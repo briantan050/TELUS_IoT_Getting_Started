@@ -14,11 +14,11 @@ This tutorial is forked from **GarettB**'s tutorial: "**TELUS IOT Getting Starte
 ### The Kit
 
 The Kit Consists of 3 Parts:
-1. BG96 shield Cat.M1/NB1 & EGPRS module with added support for GPS
+1. **BG96 shield** Cat.M1/NB1 & EGPRS module with added support for GPS
 A 2FF SIM connector accommodates the TELUS Starter SIM that is included in the kit for connecting to the internet via TELUS’ virtual dedicated IoT network
-2. X-NUCLEO-IKS01A2 sensor board for the STM32
+2. **X-NUCLEO-IKS01A2** sensor board for the STM32
 It is equipped with Arduino UNO R3 connector layout and is designed around the LSM6DSL 3D accelerometer and 3D gyroscope, the LSM303AGR 3D accelerometer and 3D magnetometer, the HTS221 humidity and temperature sensor and the LPS22HB pressure sensor
-3. NUCLEO L496ZG-P MCU
+3. **NUCLEO L496ZG-P MCU**
 The NUCLEO-L496ZG micro-controller board is fitted with an STM32L496ZG micro-controller, clocked at 80 MHz, with 1MB Flash memory, 320 KB RAM (for development flexibility), up to 115 GPIOs, an on-board ST-LINK/V2-1 debugger/programmer, and multiple expansion interfaces (USB OTG host interface, Arduino<sup>TM</sup> Uno V3 compatible expansion headers and ST Morpho headers), and is supported by comprehensive STM32 free software libraries and examples.
 
 
@@ -64,7 +64,7 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 6. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 #### Windows
-Add Python 2.7.13 and Python 3.10.2 to your user or systems PATH environment variable:
+Add **Python 2.7.13** and **Python 3.10.2** to your user or systems PATH environment variable:
 Right click on "My Computer" or "This PC" and select "Properties".
 ![image](https://user-images.githubusercontent.com/53897474/158274241-18625179-0f41-4d7f-958e-bd030eaf9dcd.png)
 
