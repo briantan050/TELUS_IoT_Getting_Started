@@ -60,16 +60,20 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 Add Python 2.7.13 and Python 3.10.2 to your user or systems PATH environment variable:
 Right click on "My Computer" or "This PC" and select "Properties".
 ![image](https://user-images.githubusercontent.com/53897474/158274241-18625179-0f41-4d7f-958e-bd030eaf9dcd.png)
+
 Select "Advanced system settings".
 ![image](https://user-images.githubusercontent.com/53897474/158274062-4fd63ea9-29af-40c6-8f21-1bd8dbac4d83.png)
+
 In the "Advanced" tab, select "Environment Variables...".
 ![image](https://user-images.githubusercontent.com/53897474/158274339-f1d1c140-42a8-4c83-9451-9296aba4dda0.png)
+
 In the "System variables" section, double click on "Path" to edit path variables.
 ![image](https://user-images.githubusercontent.com/53897474/158274566-9144989b-71aa-45ec-8e45-1e717b16d865.png)
+
 Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click "Browse..." and navigate to the folder it was installed.
 ![image](https://user-images.githubusercontent.com/53897474/158274882-77a6d052-e535-439c-8845-d50272e9bace.png)
 
-
+Select "OK", "OK", and "OK" to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
 
 
 ### Install PIP, the Python Package Installer
