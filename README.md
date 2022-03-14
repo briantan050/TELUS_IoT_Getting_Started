@@ -57,9 +57,13 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 6. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 #### Windows
-Add Python 2.7.13 and Python 3.10.2 to your user or systems PATH environment variable
-![click on here image](https://user-images.githubusercontent.com/53897474/158273753-e68d16b8-579f-4f35-9515-65a84a51ddd1.png)
-
+Add Python 2.7.13 and Python 3.10.2 to your user or systems PATH environment variable:
+Right click on "My Computer" or "This PC" and select "Properties"
+![image](https://user-images.githubusercontent.com/53897474/158274241-18625179-0f41-4d7f-958e-bd030eaf9dcd.png)
+Select "Advanced system settings"
+![image](https://user-images.githubusercontent.com/53897474/158274062-4fd63ea9-29af-40c6-8f21-1bd8dbac4d83.png)
+In the "Advanced" tab, select "Environment Variables..."
+![image](https://user-images.githubusercontent.com/53897474/158274339-f1d1c140-42a8-4c83-9451-9296aba4dda0.png)
 
 
 ### Install PIP, the Python Package Installer
