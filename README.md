@@ -1,8 +1,15 @@
 # The TELUS LTE-M IoT Starter Kit
 
-This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit, giving you some background on the kit and walking you through the entire process of getting the Kit configured to send data to your own Microsoft Azure instance. This tutorial is forked from GarettB's tutorial: "TELUS IOT Getting Started", adding additional descriptions. 
+This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit, giving you some background on the kit and walking you through the entire process of getting the Kit configured to send data to your own Microsoft Azure instance, and then build your own dashboard to view the data with Power BI. 
 
-## Let’s start with some background
+This tutorial is forked from **GarettB**'s tutorial: "**TELUS IOT Getting Started**", adding additional descriptions and including instructions for building a dashboard to view the IOT sensor data. 
+
+## Requirements
+
+1. Telus IOT Starter Kit
+2. Microsoft Power BI Account
+3. Microsoft Azure Account linked to the same email as Power BI account
+4. Basic knowledge of Command Lind Interface (CLI) is an asset
 
 ### The Kit
 
@@ -178,17 +185,19 @@ NOTE: Ensure you include the trailing slash, ‘/’ on a Mac, or compilation wi
 
 If you’ve stuck with my rambling til now, I’m happy to say you’re now ready to compile the Azure client and get it loaded to your IoT device. The following steps will get your client compiled and loaded to your board:
 1. Run the terminal or command-line on your Mac or Windows PC respectively
-1. Change to the directory to `azure-iot-mbed-client` (this is created in the same directory where we ran `mbed import` above)
-1. Install the required Python packages by running the command:
-  * `python -m pip install -r mbed-os/requirements.txt`
+2. Change the directory to azure-iot-mbed-client (this is created in the same directory where we ran `mbed import` above) by running the following command:
+  * `cd azure-iot-mbed-client`
+3. Install the required Python packages by running the command:
+  * `py -2 -m pip install wheel`
+  * `py -2 -m pip install -r mbed-os/requirements.txt`
   * If you encounter errors, try appending `--user` to the abve command and re-run
-1. Plug a USB cable from the L496 MCU (white board) using the micro-usb cable into your computer
-1. Check to see if there is a USB drive detected called NODE_L496ZG.  This means your board is connected.
-1. Run the command:
-  * ```mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json```
+4. Plug a USB cable from the L496 MCU (white board) using the micro-usb cable into your computer
+5. Check to see if there is a USB drive detected called NODE_L496ZG.  This means your board is connected.
+6. Run the command:
+  * `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
     * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
-1. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD/NUCLEO_L496ZG/GCC_ARM/azure-iot-mbed-client.bin`
-1. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
+7. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD/NUCLEO_L496ZG/GCC_ARM/azure-iot-mbed-client.bin`
+8. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
 
 Once your board reboots it will immediately attempt to connect to the network, read sensor data and send that data to your IoT Hub.
 
@@ -233,7 +242,7 @@ The Azure CLI tool will let us monitor the payloads sent from the board to Azure
   * `az login`
   * A browser will open, log in using your Azure credentials
 1. Install the Azure IoT extension:
-  * `az extension add --name azure-cli-iot-ext`
+  * `az extension add --name azure-iot`
 1. Retrieve the “Connection String - primary key” that you copied earlier when you created your IoT Hub, with it, issue the following command in the command-line terminal:
   * `az iot hub monitor-events --login "<your_connection_string"`
 
