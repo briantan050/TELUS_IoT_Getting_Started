@@ -1,6 +1,6 @@
 # The TELUS LTE-M IoT Starter Kit
 
-This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit, giving you some background on the kit and walking you through the entire process of getting the Kit configured to send data to your own Microsoft Azure instance.
+This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit, giving you some background on the kit and walking you through the entire process of getting the Kit configured to send data to your own Microsoft Azure instance. This tutorial is forked from GarettB's tutorial: "TELUS IOT Getting Started", adding additional descriptions. 
 
 ## Let’s start with some background
 
@@ -82,10 +82,10 @@ PIP is a command-line tool that installs Python packages, it is the standard for
 1. From the command-line run the following command to retrieve the PIP install script:
   * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
 1. Run the following command to retrieve and install PIP:
-  * `python get-pip.py`
+  * `python -3 get-pip.py`
 
 Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
-* `python -m pip install --upgrade setuptools`
+* `python -2 -m pip install --upgrade setuptools`
 * If you encounter errors with the above command, try appending `--user` and re-run
 
 That's all for PIP for now, we'll reference it again a bit later.
@@ -96,15 +96,15 @@ The mbed-cli is hosted on github and built in Python, so we can download it usin
 From the command-line:
 1. `git clone https://github.com/ARMmbed/mbed-cli.git`
 2. `cd mbed-cli`
-3. `python setup.py install`
+3. `py -2 -m setup.py install`
 
-Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. In Windows you may need to instead run `python -m mbed`.
+Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. In Windows you may need to instead run `py -2 -m mbed`.
 
 ### Download the Avnet Azure IoT Client
 Avnet has created a client for the TELUS IoT starter kit that, with a couple of configuration tweaks, is ready to compile and load onto your IoT board.
 
 Get the client downloaded by running the following from the command-line, this will create a folder with loads of files, so be sure to run the command in a folder that works for you:
-1. `mbed import https://github.com/Avnet/azure-iot-mbed-client`
+1. `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client`
 Note: In Windows you may need to prepend that command with `python -m`
 
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
