@@ -58,7 +58,7 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 
 #### Windows
 Add Python 2.7.13 and Python 3.10.2 to your user or systems PATH environment variable
-![image](https://user-images.githubusercontent.com/53897474/158273556-72c44bfd-7db6-46a5-a3c2-44c556aaaaaa.png)
+![click on here image](https://user-images.githubusercontent.com/53897474/158273753-e68d16b8-579f-4f35-9515-65a84a51ddd1.png)
 
 
 
