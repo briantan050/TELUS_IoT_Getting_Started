@@ -51,14 +51,16 @@ Now your hardware is ready to be connected and programmed.
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
 1. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2. [Mercurial](https://www.mercurial-scm.org/downloads)
-3. [Python 2.7](https://www.python.org/downloads/release/python-2713/) (already built into MacOS)
-4. [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
-5. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/) (already built into MacOS)
+4. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
+5. [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
+6. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 
 #### Windows
-Add Python to your user or systems PATH environment variable
+Add Python 2.7.13 and Python 3.10.2 to your user or systems PATH environment variable
+![image](https://user-images.githubusercontent.com/53897474/158273556-72c44bfd-7db6-46a5-a3c2-44c556aaaaaa.png)
 
-   **TIP** Python 2 is required for this tutorial, if you have both Python 2 and 3 installed you can substitute `python` in the command-line with `py -2` for the remainder of this tutorial which will ensure Python 2 is being used*
+
 
 ### Install PIP, the Python Package Installer
 
