@@ -30,9 +30,9 @@ The NUCLEO-L496ZG micro-controller board is fitted with an STM32L496ZG micro-con
 ARM Mbed OS is a free, open-source embedded operating system designed specifically for the "things" in the Internet of Things.
 
 It includes all the features you need to develop a connected product based on an ARM Cortex-M microcontroller, including security, connectivity, an RTOS, and drivers for sensors and I/O devices.
-
-
-
+  
+  
+  
 # Part 1: Sending IoT data to Microsoft Azure IoT Hub
 
 ## Configuring Your IoT Hardware
@@ -123,8 +123,8 @@ Get the client downloaded by running the following from the command-line, this w
 * or `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client` (windows)
 
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
-
-
+  
+  
 ## Configuring Azure
 
 ### Setting Up Your Azure Account
@@ -205,8 +205,8 @@ In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-updat
 ![alt text](images/mbed_settings.py_config.png)
 
 NOTE: Ensure you include the trailing slash, ‘/’ on a Mac, or compilation will not succeed!
-
-
+  
+  
 ## Compile Time!
 
 The following steps will get your client compiled and loaded to your board:
@@ -298,9 +298,9 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 * Successfully sent data from your IoT device to Azure IoT Hub
 
 The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
-
-
-
+  
+  
+  
 # Part 2: Displaying IoT data in a Power BI dashboard
 
 ### Add a consumer group to your IoT hub
@@ -480,7 +480,9 @@ Your dashboard is now displaying sensor data from your Azure IoT Hub. In this tu
 * Created a consumer group in your Azure IoT hub.
 * Created and configured an Azure Stream Analytics job to read temperature telemetry from your consumer group and sent it to Power BI.
 * Configured a report for the data in Power BI and shared it to the web.
-
+  
+  
+  
 ## Credits:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://github.com/garettB/TELUS_IoT_Getting_Started)
 * Microsoft Azure's tutorial: [Visualize real-time sensor data from Azure IoT Hub using Power BI](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
