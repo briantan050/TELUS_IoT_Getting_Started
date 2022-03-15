@@ -70,20 +70,19 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their user or systems PATH environment variables:
 
 Right click on **My Computer** or **This PC** and select **Properties**.
-![Path_1](https://user-images.githubusercontent.com/53897474/158274241-18625179-0f41-4d7f-958e-bd030eaf9dcd.png)
+![image](https://user-images.githubusercontent.com/53897474/158488241-2ec16e0a-3eab-411c-ac95-1413398c7962.png)
 
 Select **Advanced system settings**.
-![Path_2](https://user-images.githubusercontent.com/53897474/158274062-4fd63ea9-29af-40c6-8f21-1bd8dbac4d83.png)
+![image](https://user-images.githubusercontent.com/53897474/158488261-8f7026ee-c8cc-4efe-b19b-28e709a23d75.png)
 
 In the **Advanced** tab, select **Environment Variables...**.
-![Path_3](https://user-images.githubusercontent.com/53897474/158274339-f1d1c140-42a8-4c83-9451-9296aba4dda0.png)
+![image](https://user-images.githubusercontent.com/53897474/158488283-f562c809-4e35-42dd-8c03-248cd76e4cd4.png)
 
 In the **System variables** section, double click on **Path** to edit path variables.
-![Path_4](https://user-images.githubusercontent.com/53897474/158274566-9144989b-71aa-45ec-8e45-1e717b16d865.png)
+![image](https://user-images.githubusercontent.com/53897474/158488306-a20e1dc9-7df6-4bcd-b819-fcc68db5b7bf.png)
 
 Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click **Browse...** and navigate to the folder it was installed.
-![Path_5](https://user-images.githubusercontent.com/53897474/158274882-77a6d052-e535-439c-8845-d50272e9bace.png)
-
+![image](https://user-images.githubusercontent.com/53897474/158488342-6d4fd7ae-4fab-4f93-ba68-e67c45ce03e9.png)
 Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
 
 ### Install PIP, the Python Package Installer
@@ -91,11 +90,11 @@ Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.1
 PIP is a command-line tool that installs Python packages, it is the standard for installing requirements for Python projects and we will need to use it to gather dependencies before we can compile the MBED-OS.
 
 1. Open the command prompt. In Windows, this is done by searching **CMD**
-![image](https://user-images.githubusercontent.com/53897474/158477665-4b61f797-d319-4fe7-84b8-f4f0755ba27c.png)
+![image](https://user-images.githubusercontent.com/53897474/158488410-f50ece73-6799-4606-aed7-914f68e35293.png)
 
 2. From the command line, run the following command to retrieve the PIP install script:
 * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-![image](https://user-images.githubusercontent.com/53897474/158477835-e0e38696-d232-4e29-abcb-95fc21d1e2f6.png)
+![image](https://user-images.githubusercontent.com/53897474/158488518-8a045329-5b07-42ae-9b13-50b190e31461.png)
 
 3. Run the following command to retrieve and install PIP:
 * `python get-pip.py`
