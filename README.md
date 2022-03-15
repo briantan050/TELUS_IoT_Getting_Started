@@ -237,17 +237,17 @@ With the IoT board connected to your computer you are able to analyze the board 
 
 #### Windows
 1. Open Tera Term, select "Serial" and "OK" to connect to the board through the COM port.
-![image](https://user-images.githubusercontent.com/53897474/158278744-b73f5299-ce2d-496f-aa3e-79a5b2c78155.png)
+![image](https://user-images.githubusercontent.com/53897474/158283699-37a1a32f-ab6d-4f29-b91c-125c9fb77e83.png)
 
 2. In the "Setup" tab, select "Serial port..."
-![image](https://user-images.githubusercontent.com/53897474/158279033-26e1a8d9-00e9-4503-ac0a-155b3a9a1e82.png)
+![image](https://user-images.githubusercontent.com/53897474/158283783-3852542f-3635-4d28-9033-71d6866454e3.png)
 
 3. Change the "Speed:" setting to "115200" and confirm by selecting "New setting"
-![image](https://user-images.githubusercontent.com/53897474/158279193-1aaae017-7707-4e1f-bae5-cd48a3263812.png)
+![image](https://user-images.githubusercontent.com/53897474/158283827-c3dd35cd-0c17-4a84-a543-452b0d3c2e06.png)
 
 If you don’t see anything in the terminal after following the above steps, press the black “RESET B2” button on the white board, this will reboot the board and should present you with a screen similar to this one in the terminal:
 
-![image](https://user-images.githubusercontent.com/53897474/158279324-259d0a22-8362-4f11-9095-aad5f2799dac.png)
+![image](https://user-images.githubusercontent.com/53897474/158283873-b790b8b8-91a5-4ba9-b95a-0b3d63a333a4.png)
 
 If it is still having trouble connecting, place your board near a window to get better reception. 
 
