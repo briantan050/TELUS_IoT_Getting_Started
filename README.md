@@ -59,7 +59,7 @@ Now your hardware is ready to be connected and programmed.
 ### Pre-Requisites (Download and Extract/Install)
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
 1. [Git 2.35.1.2](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-2. [Mercurial](https://www.mercurial-scm.org/downloads)
+2. [Mercurial 6.1](https://www.mercurial-scm.org/downloads)
 3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/)
 4. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
 5. [GNU ARM Embedded Toolchain 10.3-2021.10](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
@@ -200,17 +200,17 @@ This file handles the sensor information gathering from the IoT board sensors, c
 
 The only thing we need to configure in this file is the name of the IoT device (`deviceId`, line 83) and setting the connection string (`connectionString`, line 81). Set the device ID to the name you used for the IoT device in Azure, and set the connection string to the “Connection String - primary key” we just copied a couple steps ago when creating the IoT device. One thing to note, the device ID is actually part of the connection string. Below is a screenshot of my configured file:
 
-![alt text](images/avnetbg96_azure_client_config.png)
+![image](https://user-images.githubusercontent.com/53897474/158484610-848aeca0-6167-4ee7-b9fe-b01c4d1cf733.png)
 
 #### mbed_settings.py
 
 In this file we need to update the `GCC_ARM_PATH` value to the location where you extracted the **GNU ARM Embedded Toolchain**. 
-In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to:
-`/Users/garett/Documents/dev/telus/iot_hack/gcc-arm-none-eabi-8-2018-q4-major/bin/`
+In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to  
+`/C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/`
 
-![alt text](images/mbed_settings.py_config.png)
+![image](https://user-images.githubusercontent.com/53897474/158484514-495eca06-2fef-4b69-af5e-e125767e6693.png)
 
-NOTE: Ensure you include the trailing slash, ‘/’ on a Mac, or compilation will not succeed!
+NOTE: Ensure the location has a `/` at each end.
 
 ## Compile Time!
 
@@ -231,7 +231,7 @@ The following steps will get your client compiled and loaded to your board:
 * `mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
 * or `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json` (windows)
 * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
-8. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD/NUCLEO_L496ZG/GCC_ARM/azure-iot-mbed-client.bin`
+8. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD\NUCLEO_L496ZG\GCC_ARM-TOOLCHAIN_DEBUG`
 9. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
 
 Once your board reboots it will immediately attempt to connect to the network, read sensor data and send that data to your IoT Hub.
