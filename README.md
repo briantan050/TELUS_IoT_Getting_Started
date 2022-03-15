@@ -39,13 +39,11 @@ The BG96 and X-NUCLEO-IKS01A2 are already connected to each other in the box.  E
 Ensure the SIM switch is in the `SIM` position, and the SIM is inserted with the notch close to the switch.
 
 ![alt text](images/sim_details.png)
-
 *[Image used from element14 Blog](https://www.element14.com/community/groups/mbed/blog/2018/09/21/implementing-an-azure-iot-client-using-the-mbed-os-part-2)*
 
 Also, please ensure that the Rx/Tx slide switches are set as shown (maroon switches away from the BG96 chip:
 
 ![alt text](images/board_switches.png)
-
 *[Image used from element14 Blog](https://www.element14.com/community/groups/mbed/blog/2018/09/21/implementing-an-azure-iot-client-using-the-mbed-os-part-2)*
 
 Connect the BG96 with sensor module to the L496 MCU so it looks like below:
@@ -68,24 +66,24 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 7. [Tera Term 4.106](https://osdn.net/projects/ttssh2/releases/)
 
 #### Windows
-Add **Python 2.7.13** and **Python 3.10.2** to your user or systems PATH environment variable:
+Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their user or systems PATH environment variables:
 
-Right click on "My Computer" or "This PC" and select "Properties".
+Right click on **My Computer** or **This PC** and select **Properties**.
 ![Path_1](https://user-images.githubusercontent.com/53897474/158274241-18625179-0f41-4d7f-958e-bd030eaf9dcd.png)
 
-Select "Advanced system settings".
+Select **Advanced system settings**.
 ![Path_2](https://user-images.githubusercontent.com/53897474/158274062-4fd63ea9-29af-40c6-8f21-1bd8dbac4d83.png)
 
-In the "Advanced" tab, select "Environment Variables...".
+In the **Advanced** tab, select **Environment Variables...**.
 ![Path_3](https://user-images.githubusercontent.com/53897474/158274339-f1d1c140-42a8-4c83-9451-9296aba4dda0.png)
 
-In the "System variables" section, double click on "Path" to edit path variables.
+In the **System variables** section, double click on **Path** to edit path variables.
 ![Path_4](https://user-images.githubusercontent.com/53897474/158274566-9144989b-71aa-45ec-8e45-1e717b16d865.png)
 
-Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click "Browse..." and navigate to the folder it was installed.
+Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click **Browse...** and navigate to the folder it was installed.
 ![Path_5](https://user-images.githubusercontent.com/53897474/158274882-77a6d052-e535-439c-8845-d50272e9bace.png)
 
-Select "OK", "OK", and "OK" to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
+Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
 
 ### Install PIP, the Python Package Installer
 
@@ -134,19 +132,25 @@ https://powerbi.microsoft.com/en-ca/
 
 ### Creating Your IoT Hub
 
-Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard using the “Create New Resource” function:
+Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard
+* Click on **Create a resource**
 
 ![alt text](images/iot_hub_create.png)
 
-Give your IoT a unique name, place it in the Canada East region and make sure your Subscription is set to “Free Trial”. Your new IoT Hub should look similar to this:
+* Give your IoT a unique name
+* Place it in the Canada East region and make sure your Subscription is set to **Free Trial**. 
+* Your new IoT Hub should look similar to this:
 
 ![alt text](images/iot_hub_config.png)
 
-Proceed to “Review and Create” then create your instance. This may take a couple of minutes.
+* Proceed to **Review and Create** then create your instance. This may take a couple of minutes.
 
 Now our IoT Hub is created! This will be our central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and action on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured and visibility to that data is also protected. As a next step we are going to retrieve keys that we can use to securely transport and monitor the data being sent between our IoT devices and our newly created Azure IoT Hub.
 
-Open your newly created IoT Hub instance, then select “Shared Access Policies” from the left-hand pane which will bring up a list of pre-created policies, select the one labeled “iothubowner”. A new right-hand pane will appear with a list of “Shared access keys”. Copy the one labeled “Connection string - primary key” and store it someplace safe for later.
+* Open your newly created IoT Hub instance, then select **Shared Access Policies** from the left-hand pane which will bring up a list of pre-created policies
+* Select the one labeled **iothubowner**. 
+* A new right-hand pane will appear with a list of **Shared access keys**. 
+* Copy the one labeled **Connection string - primary key** and store it someplace safe for later.
 
 ![alt text](images/iot_hub_connection_string.png)
 
@@ -154,19 +158,24 @@ The primary key we just copied can be used from the Azure command-line to monito
 
 ### Create Your IoT Device
 
-The next step is to create an IoT Device instance within your IoT Hub, this will be mapped directly to the physical IoT Device you are using. Open your IoT Hub then, from the left-pane, select “IoT Devices”, then click the “Add” button to create your new device.
+The next step is to create an IoT Device instance within your IoT Hub, this will be mapped directly to the physical IoT Device you are using. 
+* Open your IoT Hub
+* From the left-pane, select **IoT Devices**
+* Then click the **Add** button to create your new device.
 
 ![alt text](images/iot_hub_new_device.png)
 
-Give your new device a name that is relevant to your project, this will be how you will identify the source of the data sent to your Hub. Leave the other settings as-is (“Symmetric Keys” selected and “Auto-generate keys” checked). Click “Save”.
+* Give your new device a name that is relevant to your project, this will be how you will identify the source of the data sent to your Hub. 
+* Leave the other settings as-is (“Symmetric Keys” selected and “Auto-generate keys” checked). 
+* Click **Save**.
 
-Now that your IoT device is created, click it to bring up its “Device Details” screen. From this screen copy the “Connection String - primary key” and store it with the primary key you copied earlier from the IoT Hub creation step.
+* Now that your IoT device is created, click it to bring up its “Device Details” screen. 
+* From this screen copy the **Connection String - primary key** and store it with the primary key you copied earlier from the IoT Hub creation step.
 
 ![alt text](images/iot_device_connection_string.png)
 
-This primary key will be loaded to your IoT device to secure the communications channel between it and your IoT Hub.
-
-At this point we have everything we need to complete the configuration of your TELUS LTE-M IoT Starter Kit, so we’ll jump back there.
+* This primary key will be loaded to your IoT device to secure the communications channel between it and your IoT Hub.
+* At this point we have everything we need to complete the configuration of your TELUS LTE-M IoT Starter Kit, so we’ll jump back there.
 
 ### Configure Your IoT Device for Azure
 
@@ -184,7 +193,7 @@ The only thing we need to configure in this file is the name of the IoT device (
 
 #### mbed_settings.py
 
-In this file we need to update the `GCC_ARM_PATH` value to the location where you extracted the “GNU ARM Embedded Toolchain”. 
+In this file we need to update the `GCC_ARM_PATH` value to the location where you extracted the **GNU ARM Embedded Toolchain**. 
 In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to:
 `/Users/garett/Documents/dev/telus/iot_hack/gcc-arm-none-eabi-8-2018-q4-major/bin/`
 
@@ -194,7 +203,7 @@ NOTE: Ensure you include the trailing slash, ‘/’ on a Mac, or compilation wi
 
 ## Compile Time!
 
-If you’ve stuck with my rambling til now, I’m happy to say you’re now ready to compile the Azure client and get it loaded to your IoT device. The following steps will get your client compiled and loaded to your board:
+The following steps will get your client compiled and loaded to your board:
 1. Run the terminal or command-line on your Mac or Windows PC respectively
 2. Change the directory to azure-iot-mbed-client (this is created in the same directory where we ran `mbed import` above) by running the following command:
 * `cd azure-iot-mbed-client`
@@ -235,20 +244,20 @@ If all goes well, your hub will start receiving the data from your board without
 
 ### See Your Board Status
 
-With the IoT board connected to your computer you are able to analyze the board status using the COM port the board has connected to the computer using.
+With the IoT board connected to your computer, you are able to analyze the board status through the COM port.
 
 #### MacOS
 1. From your terminal and issue the command ls /dev/tty.*  This will show all the serial ports you have.  Look for /dev/tty.usbmodemxxxxx (on my Mac it was 14203), which will be the board
 2. Issue the command screen /dev/tty.usbmodemxxxxx 115200 (where xxxxx is for your particular Mac).  This connects to your device and displays the terminal output with baud rate of 115200.
 
 #### Windows
-1. Open Tera Term, select "Serial" and "OK" to connect to the board through the COM port.
+1. Open Tera Term, select **Serial** and **OK** to connect to the board through the COM port.
 ![Tera_1](https://user-images.githubusercontent.com/53897474/158283699-37a1a32f-ab6d-4f29-b91c-125c9fb77e83.png)
 
-2. In the "Setup" tab, select "Serial port..."
+2. In the **Setup** tab, select **Serial port...**
 ![Tera_2](https://user-images.githubusercontent.com/53897474/158283783-3852542f-3635-4d28-9033-71d6866454e3.png)
 
-3. Change the "Speed:" setting to "115200" and confirm by selecting "New setting"
+3. Change the **Speed** setting to **115200** and confirm by selecting **New setting**
 ![Tera_3](https://user-images.githubusercontent.com/53897474/158283827-c3dd35cd-0c17-4a84-a543-452b0d3c2e06.png)
 
 If you don’t see anything in the terminal after following the above steps, press the black “RESET B2” button on the white board, this will reboot the board and should present you with a screen similar to this one in the terminal:
@@ -274,9 +283,35 @@ If all goes well you will start seeing JSON payloads as they are sent to the ser
 
 ![alt text](images/azure_cli_output.png)
 
-## Done
+### Done
 
-By following the above tutorial your TELUS LTE-M IoT Starter Kit is now connected to your Azure instance and sending sensor data on a regular basis. Now you just need to do something amazing with that data!
+Your board is now sending sensor data to Azure IoT Hub on a regular basis. The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
+
+# Part 2: Displaying IoT data in a Power BI dashboard
+
+## Add a consumer group to your IoT hub
+
+Consumer groups provide independent views into the event stream that enable apps and Azure services to independently consume data from the same Event Hub endpoint. In this section, you add a consumer group to your IoT hub's built-in endpoint that is used later in this tutorial to pull data from the endpoint.
+
+To add a consumer group to your IoT hub, follow these steps:
+
+1. In the Azure portal, open your **IoT hub**.
+2. On the left pane, select **Built-in endpoints**. Enter a name for your new consumer group in the text box under Consumer groups.
+![Consumer_1](https://user-images.githubusercontent.com/53897474/158298467-af1742f7-d951-4438-b566-22739015824d.png)
+3. Click anywhere outside the text box to save the consumer group.
+
+## Create a Stream Analytics job
+
+1. In the Azure portal, select **Create a resource**. 
+2. Type **Stream Analytics Job** in the search box and select it from the drop-down list. 
+3. On the Stream Analytics job overview page, select **Create**
+4. Enter the following information for the job.  
+   **Job name**: The name of the job. The name must be globally unique.  
+   **Resource group**: Use the same resource group that your IoT hub uses.  
+   **Location**: Use the same location as your resource group.  
+![image](https://user-images.githubusercontent.com/53897474/158298591-c7eb8803-c049-420a-ac88-3b13155b2e76.png)  
+3. Select **Create**.  
+
 
 
 ## Credits:
