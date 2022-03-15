@@ -63,7 +63,6 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 5. [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
 6. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 7. [Tera Term 4.106](https://osdn.net/projects/ttssh2/releases/)
-8. 
 
 #### Windows
 Add **Python 2.7.13** and **Python 3.10.2** to your user or systems PATH environment variable:
@@ -91,7 +90,7 @@ PIP is a command-line tool that installs Python packages, it is the standard for
 1. From the command-line run the following command to retrieve the PIP install script:
   * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
 1. Run the following command to retrieve and install PIP:
-  * `python -3 get-pip.py`
+  * `py -3 get-pip.py`
 
 Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
 * `python -2 -m pip install --upgrade setuptools`
@@ -107,7 +106,8 @@ From the command-line:
 2. `cd mbed-cli`
 3. `py -2 -m setup.py install`
 
-Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. In Windows you may need to instead run `py -2 -m mbed`.
+Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. 
+In Windows you may need to instead run `py -2 -m mbed`.
 
 ### Download the Avnet Azure IoT Client
 Avnet has created a client for the TELUS IoT starter kit that, with a couple of configuration tweaks, is ready to compile and load onto your IoT board.
@@ -228,15 +228,13 @@ With the IoT board connected to your computer you are able to analyze the board 
 2. Issue the command screen /dev/tty.usbmodemxxxxx 115200 (where xxxxx is for your particular Mac).  This connects to your device and displays the terminal output with baud rate of 115200.
 
 #### Windows
-1. Download and install the [Quectel LTE USB Driver](files/Quectel_LTE_Windows_USB_Driver_V1.0.zip)
-2. Using your client of choice (I prefer [Putty](https://www.putty.org/)) open a Serial connection to the COM port the board is using (you can determine this using Windows’ Device Manager), and a Baud Rate of 115200.
-3. Open Tera Term, select "Serial" and "OK" to connect to the board through the COM port.
+1. Open Tera Term, select "Serial" and "OK" to connect to the board through the COM port.
 ![image](https://user-images.githubusercontent.com/53897474/158278744-b73f5299-ce2d-496f-aa3e-79a5b2c78155.png)
 
-4. In the "Setup" tab, select "Serial port..."
+2. In the "Setup" tab, select "Serial port..."
 ![image](https://user-images.githubusercontent.com/53897474/158279033-26e1a8d9-00e9-4503-ac0a-155b3a9a1e82.png)
 
-5. Change the "Speed:" setting to "115200" and confirm by selecting "New setting"
+3. Change the "Speed:" setting to "115200" and confirm by selecting "New setting"
 ![image](https://user-images.githubusercontent.com/53897474/158279193-1aaae017-7707-4e1f-bae5-cd48a3263812.png)
 
 If you don’t see anything in the terminal after following the above steps, press the black “RESET B2” button on the white board, this will reboot the board and should present you with a screen similar to this one in the terminal:
