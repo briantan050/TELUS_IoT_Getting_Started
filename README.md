@@ -107,7 +107,7 @@ From the command-line:
 1. `git clone https://github.com/ARMmbed/mbed-cli.git`
 2. `cd mbed-cli`
 3. `python setup.py install`
-* or `py -2 -m setup.py install` (windows)
+  * or `py -2 -m setup.py install` (windows)
 
 Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. 
 
