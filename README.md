@@ -66,6 +66,7 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 
 #### Windows
 Add **Python 2.7.13** and **Python 3.10.2** to your user or systems PATH environment variable:
+
 Right click on "My Computer" or "This PC" and select "Properties".
 ![image](https://user-images.githubusercontent.com/53897474/158274241-18625179-0f41-4d7f-958e-bd030eaf9dcd.png)
 
