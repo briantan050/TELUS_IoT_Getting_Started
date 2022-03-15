@@ -409,6 +409,38 @@ FROM
 
 ![Stream_4](https://user-images.githubusercontent.com/53897474/158303954-2352c9f8-b18f-47f9-be90-d8ee1ed0b5d8.png)
 
+## Run the Stream Analytics job
+
+1. In the Stream Analytics job, select **Overview**, then select **Start > Now > Start**. 
+2. Once the job successfully starts, the job status changes from Stopped to Running.
+
+![Stream_5](https://user-images.githubusercontent.com/53897474/158310269-4a83b495-7032-4e79-9721-79ec0e9b101a.png)
+
+3. Start your sensor board and let it run until data packets have been sent. You can keep track of this using the "Monitoring Payloads sent to Azure" section of this walkthrough. 
+4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming packets being received. 
+
+![Stream_6](https://user-images.githubusercontent.com/53897474/158312924-05a7fac4-01b3-4498-8850-06fe880f3e20.png)
+
+## Create a Power BI report
+
+1. Sign in to your Power BI account and select Power BI service from the top menu.
+2. Select the workspace you used from the side menu, **My Workspace**.
+4. Under the **All** tab, you should see the dataset that you specified when you created the output for the Stream Analytics job.
+5. Hover over the dataset you created, select More options menu (the three dots to the right of the dataset name), and then select Create report.
+
+![Stream_7](https://user-images.githubusercontent.com/53897474/158313254-17fe5a56-e725-48ed-a497-c70067b564d8.png)
+
+## Configure a Power BI report to visualize the data
+
+1. Select charts, tables and maps from the **Visualizations** menu to design your dashboard.
+
+![Stream_8](https://user-images.githubusercontent.com/53897474/158314074-11abb2c0-3aff-4e3b-b6e0-6448a3fdadee.png)
+
+2. As an example, the configuration for the Line Chart Visualization is as follows:
+* drag **Temperature** into the **Values** section, and **EventEnqueuedUtcTime** into the **Axis** section.
+
+![image](https://user-images.githubusercontent.com/53897474/158314679-522ea6b1-fb7b-48ed-9500-1ba79868f085.png)
+
 
 ## Credits:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
