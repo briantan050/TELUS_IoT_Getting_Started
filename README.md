@@ -90,14 +90,13 @@ Select "OK", "OK", and "OK" to confirm and close all windows. Python 2.7.13 and 
 PIP is a command-line tool that installs Python packages, it is the standard for installing requirements for Python projects and we will need to use it to gather dependencies before we can compile the MBED-OS.
 1. From the command-line run the following command to retrieve the PIP install script:
   * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-1. Run the following command to retrieve and install PIP:
+2. Run the following command to retrieve and install PIP:
   * `python get-pip.py`
   * or `py -3 get-pip.py` (windows)
-
-Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
-* `python -m pip install --upgrade setuptools`
-* or `py -2 -m pip install --upgrade setuptools` (windows)
-* If you encounter errors with the above command, try appending `--user` and re-run
+3. Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
+  * `python -m pip install --upgrade setuptools`
+  * or `py -2 -m pip install --upgrade setuptools` (windows)
+  * If you encounter errors with the above command, try appending `--user` and re-run
 
 That's all for PIP for now, we'll reference it again a bit later.
 
@@ -201,14 +200,14 @@ If you’ve stuck with my rambling til now, I’m happy to say you’re now read
   * `python -m pip install -r mbed-os/requirements.txt`
   * or `py -2 -m pip install -r mbed-os/requirements.txt`
   * If you encounter errors, try appending `--user` to the abve command and re-run
-4. Plug a USB cable from the L496 MCU (white board) using the micro-usb cable into your computer
-5. Check to see if there is a USB drive detected called NODE_L496ZG.  This means your board is connected.
-6. Run the command:
+5. Plug a USB cable from the L496 MCU (white board) using the micro-usb cable into your computer
+6. Check to see if there is a USB drive detected called NODE_L496ZG.  This means your board is connected.
+7. Run the command:
   * `mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
   * or `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
   * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
-7. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD/NUCLEO_L496ZG/GCC_ARM/azure-iot-mbed-client.bin`
-8. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
+8. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD/NUCLEO_L496ZG/GCC_ARM/azure-iot-mbed-client.bin`
+9. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
 
 Once your board reboots it will immediately attempt to connect to the network, read sensor data and send that data to your IoT Hub.
 
@@ -260,9 +259,9 @@ The Azure CLI tool will let us monitor the payloads sent from the board to Azure
 1. Issue the following command to log in to Azure from the command-line
   * `az login`
   * A browser will open, log in using your Azure credentials
-1. Install the Azure IoT extension:
+2. Install the Azure IoT extension:
   * `az extension add --name azure-iot`
-1. Retrieve the “Connection String - primary key” that you copied earlier when you created your IoT Hub, with it, issue the following command in the command-line terminal:
+3. Retrieve the “Connection String - primary key” that you copied earlier when you created your IoT Hub, with it, issue the following command in the command-line terminal:
   * `az iot hub monitor-events --login "<your_connection_string"`
 
 
