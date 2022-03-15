@@ -58,7 +58,7 @@ Now your hardware is ready to be connected and programmed.
 
 ### Pre-Requisites (Download and Extract/Install)
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
-1. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+1. [Git 2.35.1.2](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2. [Mercurial](https://www.mercurial-scm.org/downloads)
 3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/)
 4. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
@@ -89,15 +89,22 @@ Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.1
 ### Install PIP, the Python Package Installer
 
 PIP is a command-line tool that installs Python packages, it is the standard for installing requirements for Python projects and we will need to use it to gather dependencies before we can compile the MBED-OS.
-1. From the command-line run the following command to retrieve the PIP install script:
+
+1. Open the command prompt. In Windows, this is done by searching **CMD**
+![image](https://user-images.githubusercontent.com/53897474/158477665-4b61f797-d319-4fe7-84b8-f4f0755ba27c.png)
+
+2. From the command line, run the following command to retrieve the PIP install script:
 * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-2. Run the following command to retrieve and install PIP:
+![image](https://user-images.githubusercontent.com/53897474/158477835-e0e38696-d232-4e29-abcb-95fc21d1e2f6.png)
+
+3. Run the following command to retrieve and install PIP:
 * `python get-pip.py`
 * or `py -3 get-pip.py` (windows)
-3. Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
+4. Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
 * `python -m pip install --upgrade setuptools`
 * or `py -2 -m pip install --upgrade setuptools` (windows)
 * If you encounter errors with the above command, try appending `--user` and re-run
+* NOTE: Do not update your Python to the latest version from the command line, as this could lead to compatibility problems with this walkthrough. 
 
 That's all for PIP for now, we'll reference it again a bit later.
 
@@ -180,9 +187,12 @@ The next step is to create an IoT Device instance within your IoT Hub, this will
 
 ### Configure Your IoT Device for Azure
 
-Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “azure-iot-mbed-client”, within this folder there are 3 different files we need to configure. Open the following files in your editor of choice, the screenshots from below are from [Atom](https://atom.io/):
+Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “**azure-iot-mbed-client**”, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice, the screenshots from below are from [Atom](https://atom.io/), but you could also use Notepad or Notepad++:
 1. **AvnetBG96_azure_client.cpp**
 2. **mbed_settings.py**
+* The **azure-iot-mbed-client** folder can be found in the current directory as shown in the command prompt:
+![image](https://user-images.githubusercontent.com/53897474/158479826-b4ad530b-1675-49a1-acde-32d9b9e0cce3.png)
+![image](https://user-images.githubusercontent.com/53897474/158480041-b04096db-93ca-461b-972b-d230f304cbc3.png)
 
 #### AvnetBG96_azure_client.cpp
 
