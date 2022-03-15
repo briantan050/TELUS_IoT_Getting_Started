@@ -31,6 +31,8 @@ ARM Mbed OS is a free, open-source embedded operating system designed specifical
 
 It includes all the features you need to develop a connected product based on an ARM Cortex-M microcontroller, including security, connectivity, an RTOS, and drivers for sensors and I/O devices.
 
+
+
 # Part 1: Sending IoT data to Microsoft Azure IoT Hub
 
 ## Configuring Your IoT Hardware
@@ -53,6 +55,7 @@ Connect the BG96 with sensor module to the L496 MCU so it looks like below:
 *[Image used from element14 Blog](https://www.element14.com/community/groups/mbed/blog/2018/09/21/implementing-an-azure-iot-client-using-the-mbed-os-part-2)*
 
 Now your hardware is ready to be connected and programmed.
+
 
 ## Getting Your Software and Services Configured
 
@@ -120,6 +123,7 @@ Get the client downloaded by running the following from the command-line, this w
 * or `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client` (windows)
 
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
+
 
 ## Configuring Azure
 
@@ -201,6 +205,7 @@ In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-updat
 ![alt text](images/mbed_settings.py_config.png)
 
 NOTE: Ensure you include the trailing slash, ‘/’ on a Mac, or compilation will not succeed!
+
 
 ## Compile Time!
 
@@ -286,7 +291,15 @@ If all goes well you will start seeing JSON payloads as they are sent to the ser
 
 ### Done
 
-Your board is now sending sensor data to Azure IoT Hub on a regular basis. The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
+Your board is now sending sensor data to Azure IoT Hub on a regular basis. In this tutorial, you have completed the following:
+* Created an Azure IoT Hub
+* Registered your IoT device on the Azure IoT Hub
+* Compiled the Azure IoT MBed client and loaded it onto your IoT device
+* Successfully sent data from your IoT device to Azure IoT Hub
+
+The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
+
+
 
 # Part 2: Displaying IoT data in a Power BI dashboard
 
@@ -409,7 +422,7 @@ FROM
 
 ![Stream_4](https://user-images.githubusercontent.com/53897474/158303954-2352c9f8-b18f-47f9-be90-d8ee1ed0b5d8.png)
 
-## Run the Stream Analytics job
+### Run the Stream Analytics job
 
 1. In the Stream Analytics job, select **Overview**, then select **Start > Now > Start**. 
 2. Once the job successfully starts, the job status changes from Stopped to Running.
@@ -421,7 +434,7 @@ FROM
 
 ![Stream_6](https://user-images.githubusercontent.com/53897474/158312924-05a7fac4-01b3-4498-8850-06fe880f3e20.png)
 
-## Create a Power BI report
+### Create a Power BI report
 
 1. Sign in to your Power BI account and select Power BI service from the top menu.
 2. Select the workspace you used from the side menu, **My Workspace**.
@@ -430,7 +443,7 @@ FROM
 
 ![Stream_7](https://user-images.githubusercontent.com/53897474/158313254-17fe5a56-e725-48ed-a497-c70067b564d8.png)
 
-## Configure a Power BI report to visualize the data
+### Configure a Power BI report to visualize the data
 
 1. Select charts, tables and maps from the **Visualizations** menu to design your dashboard.
 
@@ -439,11 +452,37 @@ FROM
 2. As an example, the configuration for the Line Chart Visualization is as follows:
 * drag **Temperature** into the **Values** section, and **EventEnqueuedUtcTime** into the **Axis** section.
 
-![image](https://user-images.githubusercontent.com/53897474/158314679-522ea6b1-fb7b-48ed-9500-1ba79868f085.png)
+![Stream_9](https://user-images.githubusercontent.com/53897474/158314679-522ea6b1-fb7b-48ed-9500-1ba79868f085.png)
 
+### Share the report
+
+1. Select **Save** to save the report. When prompted, enter a name for your report. When prompted for a sensitivity label, you can select **Public** and then select **Save**.
+
+![Stream_10](https://user-images.githubusercontent.com/53897474/158463523-e7d53de7-dbd9-4955-a4f3-12656cfc6c9e.png)
+
+2. Still on the report pane, select File > Embed report > Website or portal.
+
+![Stream_11](https://user-images.githubusercontent.com/53897474/158464085-f278e198-fe58-436b-b813-1fbcf2e3f4e1.png)
+
+* NOTE: If you get a notification to contact your administrator to enable embed code creation, you may need to contact them. Embed code creation must be enabled before you can complete this step.
+
+3. You're provided the report link that you can share with anyone for report access and a code snippet that you can use to integrate the report into a blog or website. Copy the link in the Secure embed code window and then close the window.
+
+![Stream_12](https://user-images.githubusercontent.com/53897474/158464973-db6ffdfd-3cd1-49d8-9f4e-e6671b0655b1.png)
+
+4. Open a web browser and paste the link into the address bar.
+
+![Stream_13](https://user-images.githubusercontent.com/53897474/158465257-fc6db837-5869-4277-80d5-534bbac2e22a.png)
+
+### Done
+
+Your dashboard is now displaying sensor data from your Azure IoT Hub. In this tutorial, you have completed the following:
+* Created a consumer group in your Azure IoT hub.
+* Created and configured an Azure Stream Analytics job to read temperature telemetry from your consumer group and sent it to Power BI.
+* Configured a report for the data in Power BI and shared it to the web.
 
 ## Credits:
-* GarettB's tutorial: [TELUS IOT Getting Started](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
+* GarettB's tutorial: [TELUS IOT Getting Started](https://github.com/garettB/TELUS_IoT_Getting_Started)
 * Microsoft Azure's tutorial: [Visualize real-time sensor data from Azure IoT Hub using Power BI](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
 * Dinusha Kumarasiri's tutorial: [End to end IoT Solution with Azure IoT Hub, Event Grid and Logic Apps](https://youtu.be/Wb_QT0qHGOo)
 * Reza Vahidnia and F. John Dian's book: [Cellular Internet of Things for Practitioners](https://pressbooks.bccampus.ca/cellulariot/)
