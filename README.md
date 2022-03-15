@@ -62,8 +62,8 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 2. [Mercurial](https://www.mercurial-scm.org/downloads)
 3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/)
 4. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
-5. [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
-6. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+5. [GNU ARM Embedded Toolchain 10.3-2021.10](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
+6. [Azure Command-Line Tools 2.34.1](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
 7. [Tera Term 4.106](https://osdn.net/projects/ttssh2/releases/)
 
 #### Windows
