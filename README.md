@@ -11,7 +11,8 @@ This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit.
 1. [Telus IOT Starter Kit](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-bg96-iot-sk2-g-3074457345636408150?INTCMP=tbs_low-power-wide-area_button_buy-your-kit)
 2. [Microsoft Power BI Account](https://powerbi.microsoft.com/en-ca/) (This may require a work-email to register)
 3. [Microsoft Azure Account](https://azure.microsoft.com/en-ca/) linked to the same email as Power BI account
-4. Basic knowledge of Command-Line Interface (CLI) is an asset
+4. Basic knowledge of Command-Line Interface is an asset
+5. Basic knowledge of SQL is an asset
   
 **Important note**: It is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting.  
 
@@ -289,7 +290,7 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. The n
 
 # Part 2: Displaying IoT data in a Power BI dashboard
 
-## Add a consumer group to your IoT hub
+### Add a consumer group to your IoT hub
 
 Consumer groups provide independent views into the event stream that enable apps and Azure services to independently consume data from the same Event Hub endpoint. In this section, you add a consumer group to your IoT hub's built-in endpoint that is used later in this tutorial to pull data from the endpoint.
 
@@ -300,18 +301,113 @@ To add a consumer group to your IoT hub, follow these steps:
 ![Consumer_1](https://user-images.githubusercontent.com/53897474/158298467-af1742f7-d951-4438-b566-22739015824d.png)
 3. Click anywhere outside the text box to save the consumer group.
 
-## Create a Stream Analytics job
+### Create a Stream Analytics job
 
 1. In the Azure portal, select **Create a resource**. 
 2. Type **Stream Analytics Job** in the search box and select it from the drop-down list. 
 3. On the Stream Analytics job overview page, select **Create**
 4. Enter the following information for the job.  
-   **Job name**: The name of the job. The name must be globally unique.  
-   **Resource group**: Use the same resource group that your IoT hub uses.  
-   **Location**: Use the same location as your resource group.  
-![image](https://user-images.githubusercontent.com/53897474/158298591-c7eb8803-c049-420a-ac88-3b13155b2e76.png)  
-3. Select **Create**.  
 
+   **Job name**: The name of the job. The name must be globally unique.  
+   
+   **Resource group**: Use the same resource group that your IoT hub uses.  
+   
+   **Location**: Use the same location as your resource group.  
+   
+![Stream_1](https://user-images.githubusercontent.com/53897474/158303255-152163c5-effb-4cff-982d-11f3a63aaa68.png)
+
+5. Select **Create**.  
+
+### Add an input to the Stream Analytics job
+
+1. Open the Stream Analytics job.
+2. Under Job topology, select **Inputs**.
+3. In the Inputs pane, select **Add stream input** and select **IoT Hub** from the drop-down list. 
+4. On the new input pane, enter the following information:  
+
+    **Input alias**: Enter a unique alias for the input.  
+    
+    **Select IoT Hub from your subscription**: Select this radio button.  
+    
+    **Subscription**: Select the Azure subscription you're using for this tutorial.  
+    
+    **IoT Hub**: Select the IoT Hub you're using for this tutorial.  
+    
+    **Endpoint**: Select Messaging.  
+    
+    **Shared access policy name**: Select the name of the shared access policy you want the Stream Analytics job to use for your IoT hub. For this tutorial, you can select service. The service policy is created by default on new IoT hubs and grants permission to send and receive on cloud-side endpoints exposed by the IoT hub. To learn more, see Access control and permissions.  
+    
+    **Shared access policy key**: This field is autofilled based on your selection for the shared access policy name.  
+    
+    **Consumer group**: Select the consumer group you created previously.  
+    
+    **Leave all other fields at their defaults.**  
+
+![Stream_2](https://user-images.githubusercontent.com/53897474/158303457-08cadb96-4c33-4db4-b54e-3322d2b293a6.png)
+
+5. Select **Save**.
+
+### Add an output to the Stream Analytics job
+
+1. Under Job topology, select **Outputs**.
+
+2. In the Outputs pane, select **Add**, and then select **Power BI** from the drop-down list.
+
+3. On the Power BI - New output pane, select **Authorize** and follow the prompts to sign in to your Power BI account.
+
+4. After you've signed in to Power BI, enter the following information:
+
+    **Output alias**: A unique alias for the output.  
+
+    **Group workspace**: Select your target group workspace.  
+
+    **Dataset name**: Enter a dataset name.  
+
+    **Table name**: Enter a table name.  
+
+    **Authentication mode**: Leave at the default.  
+
+![Stream_3](https://user-images.githubusercontent.com/53897474/158303731-61c4720e-d6e9-4d56-b659-8e06d4058529.png)
+
+5. Select **Save**.
+
+### Configure the query of the Stream Analytics job
+
+1. Under Job topology, select **Query**.
+
+2. Replace the SQL query with the following:  
+  
+```
+SELECT
+    ObjectName,
+    ObjectType,
+    CAST(Version AS float) as Version,
+    ReportingDevice,
+    CAST(Latitude AS float) as Latitude,
+    CAST(Longitude AS float) as Longitude,
+    CAST(GPSTime AS float) as GPSTime,
+    CAST(GPSDate AS float) as GPSDate,
+    CAST(Temperature AS float) as Temperature,
+    CAST(Humidity AS float) as Humidity,
+    CAST(Pressure AS float) as Pressure,
+    CAST(Tilt AS float) as Tilt,
+    CAST(ButtonPress AS float) as ButtonPress,
+    TOD,
+    EventProcessedUtcTime,
+    PartitionId,
+    EventEnqueuedUtcTime,
+    IoTHub
+INTO
+    [YourOutputAlias]
+FROM
+    [YourInputAlias]
+```
+  
+3. Replace `[YourInputAlias]` with the input alias of the job.
+
+4. Replace `[YourOutputAlias]` with the output alias of the job.
+
+![Stream_4](https://user-images.githubusercontent.com/53897474/158303954-2352c9f8-b18f-47f9-be90-d8ee1ed0b5d8.png)
 
 
 ## Credits:
