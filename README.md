@@ -58,7 +58,7 @@ Now your hardware is ready to be connected and programmed.
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
 1. [Git](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 2. [Mercurial](https://www.mercurial-scm.org/downloads)
-3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/) (already built into MacOS)
+3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/)
 4. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
 5. [GNU ARM Embedded Toolchain](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
 6. [Azure Command-Line Tools](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
