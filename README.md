@@ -91,10 +91,12 @@ PIP is a command-line tool that installs Python packages, it is the standard for
 1. From the command-line run the following command to retrieve the PIP install script:
   * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
 1. Run the following command to retrieve and install PIP:
-  * `py -3 get-pip.py`
+  * `python get-pip.py`
+  * or `py -3 get-pip.py` (windows)
 
 Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
-* `python -2 -m pip install --upgrade setuptools`
+* `python -m pip install --upgrade setuptools`
+* or `py -2 -m pip install --upgrade setuptools` (windows)
 * If you encounter errors with the above command, try appending `--user` and re-run
 
 That's all for PIP for now, we'll reference it again a bit later.
@@ -105,17 +107,17 @@ The mbed-cli is hosted on github and built in Python, so we can download it usin
 From the command-line:
 1. `git clone https://github.com/ARMmbed/mbed-cli.git`
 2. `cd mbed-cli`
-3. `py -2 -m setup.py install`
+3. `python setup.py install`
+* or `py -2 -m setup.py install` (windows)
 
 Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. 
-In Windows you may need to instead run `py -2 -m mbed`.
 
 ### Download the Avnet Azure IoT Client
 Avnet has created a client for the TELUS IoT starter kit that, with a couple of configuration tweaks, is ready to compile and load onto your IoT board.
 
 Get the client downloaded by running the following from the command-line, this will create a folder with loads of files, so be sure to run the command in a folder that works for you:
-1. `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client`
-Note: In Windows you may need to prepend that command with `python -m`
+1. `mbed import https://github.com/Avnet/azure-iot-mbed-client`
+* or `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client` (windows)
 
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
 
@@ -165,8 +167,8 @@ At this point we have everything we need to complete the configuration of your T
 ### Configure Your IoT Device for Azure
 
 Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “azure-iot-mbed-client”, within this folder there are 3 different files we need to configure. Open the following files in your editor of choice, the screenshots from below are from [Atom](https://atom.io/):
-1. AvnetBG96_azure_client.cpp
-3. mbed_settings.py
+1. **AvnetBG96_azure_client.cpp**
+2. **mbed_settings.py**
 
 #### AvnetBG96_azure_client.cpp
 
@@ -178,7 +180,9 @@ The only thing we need to configure in this file is the name of the IoT device (
 
 #### mbed_settings.py
 
-In this file we need to update the `GCC_ARM_PATH` value to the location where you extracted the “GNU ARM Embedded Toolchain”. In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to `/Users/garett/Documents/dev/telus/iot_hack/gcc-arm-none-eabi-8-2018-q4-major/bin/`:
+In this file we need to update the `GCC_ARM_PATH` value to the location where you extracted the “GNU ARM Embedded Toolchain”. 
+In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to:
+`/Users/garett/Documents/dev/telus/iot_hack/gcc-arm-none-eabi-8-2018-q4-major/bin/`
 
 ![alt text](images/mbed_settings.py_config.png)
 
@@ -190,15 +194,19 @@ If you’ve stuck with my rambling til now, I’m happy to say you’re now read
 1. Run the terminal or command-line on your Mac or Windows PC respectively
 2. Change the directory to azure-iot-mbed-client (this is created in the same directory where we ran `mbed import` above) by running the following command:
   * `cd azure-iot-mbed-client`
-3. Install the required Python packages by running the command:
-  * `py -2 -m pip install wheel`
-  * `py -2 -m pip install -r mbed-os/requirements.txt`
+3. Install the required Python wheel package by running the command:
+  * `python -m pip install wheel`
+  * or `py -2 -m pip install wheel`
+4. Install the required Python packages by running the command:
+  * `python -m pip install -r mbed-os/requirements.txt`
+  * or `py -2 -m pip install -r mbed-os/requirements.txt`
   * If you encounter errors, try appending `--user` to the abve command and re-run
 4. Plug a USB cable from the L496 MCU (white board) using the micro-usb cable into your computer
 5. Check to see if there is a USB drive detected called NODE_L496ZG.  This means your board is connected.
 6. Run the command:
-  * `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
-    * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
+  * `mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
+  * or `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
+  * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
 7. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD/NUCLEO_L496ZG/GCC_ARM/azure-iot-mbed-client.bin`
 8. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
 
