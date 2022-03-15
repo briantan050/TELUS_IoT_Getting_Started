@@ -1,8 +1,8 @@
-# The TELUS LTE-M IoT Starter Kit
+# Telus-IoT-Starter-Kit-Walkthrough
 
 This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit. The first section will give you some background on the kit and walk you through the entire process of getting the kit configured to send data to your own Microsoft Azure instance. The second section will walk you through displaying the data in a Power BI dashboard. 
 
-Credits:
+**Credits**:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
 * Microsoft Azure's tutorial: [Visualize real-time sensor data from Azure IoT Hub using Power BI](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
 * Dinusha Kumarasiri's tutorial: [End to end IoT Solution with Azure IoT Hub, Event Grid and Logic Apps](https://youtu.be/Wb_QT0qHGOo)
