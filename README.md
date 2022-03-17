@@ -59,12 +59,11 @@ Now your hardware is ready to be connected and programmed.
 ### Pre-Requisites (Download and Extract/Install)
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
 1. [Git 2.35.1.2](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
-2. [Mercurial 6.1](https://www.mercurial-scm.org/downloads)
-3. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/)
-4. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
-5. [GNU ARM Embedded Toolchain 10.3-2021.10](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
-6. [Azure Command-Line Tools 2.34.1](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
-7. [Tera Term 4.106](https://osdn.net/projects/ttssh2/releases/)
+2. [Python 2.7.13](https://www.python.org/downloads/release/python-2713/)
+3. [Python 3.10.2](https://www.python.org/downloads/release/python-3102/)
+4. [GNU ARM Embedded Toolchain 10.3-2021.10](https://developer.arm.com/open-source/gnu-toolchain/gnu-rm/downloads)
+5. [Azure Command-Line Tools 2.34.1](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli?view=azure-cli-latest)
+6. [Tera Term 4.106](https://osdn.net/projects/ttssh2/releases/)
 
 #### Windows
 Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their user or systems PATH environment variables:
@@ -76,7 +75,7 @@ Select **Advanced system settings**.
 ![image](https://user-images.githubusercontent.com/53897474/158488261-8f7026ee-c8cc-4efe-b19b-28e709a23d75.png)
 
 In the **Advanced** tab, select **Environment Variables...**.
-![image](https://user-images.githubusercontent.com/53897474/158488283-f562c809-4e35-42dd-8c03-248cd76e4cd4.png)
+![image](https://user-images.githubusercontent.com/53897474/158872785-fe5a5685-6b8b-4c28-8083-25f375733a62.png)
 
 In the **System variables** section, double click on **Path** to edit path variables.
 ![image](https://user-images.githubusercontent.com/53897474/158488306-a20e1dc9-7df6-4bcd-b819-fcc68db5b7bf.png)
@@ -94,7 +93,7 @@ PIP is a command-line tool that installs Python packages, it is the standard for
 
 2. From the command line, run the following command to retrieve the PIP install script:
 * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-![image](https://user-images.githubusercontent.com/53897474/158488518-8a045329-5b07-42ae-9b13-50b190e31461.png)
+![image](https://user-images.githubusercontent.com/53897474/158873925-e0366a3d-f06e-4260-bfbb-de5605223ece.png)
 
 3. Run the following command to retrieve and install PIP:
 * `python get-pip.py`
@@ -189,9 +188,9 @@ The next step is to create an IoT Device instance within your IoT Hub, this will
 Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “**azure-iot-mbed-client**”, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice, the screenshots from below are from [Atom](https://atom.io/), but you could also use Notepad or Notepad++:
 1. **AvnetBG96_azure_client.cpp**
 2. **mbed_settings.py**
-* The **azure-iot-mbed-client** folder can be found in the current directory as shown in the command prompt:
-![image](https://user-images.githubusercontent.com/53897474/158479826-b4ad530b-1675-49a1-acde-32d9b9e0cce3.png)
-![image](https://user-images.githubusercontent.com/53897474/158480041-b04096db-93ca-461b-972b-d230f304cbc3.png)
+* The **azure-iot-mbed-client** folder can be found in the current directory as shown in the command prompt. These folders may be different for you:
+![image](https://user-images.githubusercontent.com/53897474/158874994-e7114935-8dd8-4d97-ae36-31f7efa70de3.png)
+![image](https://user-images.githubusercontent.com/53897474/158875246-14d65349-def8-40a4-bdba-c183e38965ae.png)
 
 #### AvnetBG96_azure_client.cpp
 
@@ -199,7 +198,7 @@ This file handles the sensor information gathering from the IoT board sensors, c
 
 The only thing we need to configure in this file is the name of the IoT device (`deviceId`, line 83) and setting the connection string (`connectionString`, line 81). Set the device ID to the name you used for the IoT device in Azure, and set the connection string to the “Connection String - primary key” we just copied a couple steps ago when creating the IoT device. One thing to note, the device ID is actually part of the connection string. Below is a screenshot of my configured file:
 
-![image](https://user-images.githubusercontent.com/53897474/158484610-848aeca0-6167-4ee7-b9fe-b01c4d1cf733.png)
+![image](https://user-images.githubusercontent.com/53897474/158873099-cd98199e-0acc-4c77-9f08-d7713a5a0f7a.png)
 
 #### mbed_settings.py
 
@@ -207,7 +206,7 @@ In this file we need to update the `GCC_ARM_PATH` value to the location where yo
 In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to  
 `/C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/`
 
-![image](https://user-images.githubusercontent.com/53897474/158484514-495eca06-2fef-4b69-af5e-e125767e6693.png)
+![image](https://user-images.githubusercontent.com/53897474/158873140-dbc64dd8-30c7-4997-ad45-0c59e0bf47cb.png)
 
 NOTE: Ensure the location has a `/` at each end.
 
@@ -313,12 +312,15 @@ To add a consumer group to your IoT hub, follow these steps:
 
 1. In the Azure portal, open your **IoT hub**.
 2. On the left pane, select **Built-in endpoints**. Enter a name for your new consumer group in the text box under Consumer groups.
-![Consumer_1](https://user-images.githubusercontent.com/53897474/158298467-af1742f7-d951-4438-b566-22739015824d.png)
+![image](https://user-images.githubusercontent.com/53897474/158875567-0ac1e403-10d7-4651-b5cf-64ba0ad142aa.png)
 3. Click anywhere outside the text box to save the consumer group.
 
 ### Create a Stream Analytics job
 
 1. In the Azure portal, select **Create a resource**. 
+
+![image](https://user-images.githubusercontent.com/53897474/158875955-2c17f1c8-20d5-4388-86e2-4da128a7832f.png)
+
 2. Type **Stream Analytics Job** in the search box and select it from the drop-down list. 
 3. On the Stream Analytics job overview page, select **Create**
 4. Enter the following information for the job.  
@@ -329,7 +331,7 @@ To add a consumer group to your IoT hub, follow these steps:
    
    **Location**: Use the same location as your resource group.  
    
-![Stream_1](https://user-images.githubusercontent.com/53897474/158303255-152163c5-effb-4cff-982d-11f3a63aaa68.png)
+![image](https://user-images.githubusercontent.com/53897474/158876258-30fdb7c0-a42f-4ff2-b2bc-07bd4cbc0215.png)
 
 5. Select **Create**.  
 
@@ -338,6 +340,9 @@ To add a consumer group to your IoT hub, follow these steps:
 1. Open the Stream Analytics job.
 2. Under Job topology, select **Inputs**.
 3. In the Inputs pane, select **Add stream input** and select **IoT Hub** from the drop-down list. 
+
+![image](https://user-images.githubusercontent.com/53897474/158876858-55fb7df0-b88c-4a71-95f5-cb83ad22ff57.png)
+
 4. On the new input pane, enter the following information:  
 
     **Input alias**: Enter a unique alias for the input.  
@@ -358,7 +363,7 @@ To add a consumer group to your IoT hub, follow these steps:
     
     **Leave all other fields at their defaults.**  
 
-![Stream_2](https://user-images.githubusercontent.com/53897474/158303457-08cadb96-4c33-4db4-b54e-3322d2b293a6.png)
+![image](https://user-images.githubusercontent.com/53897474/158876941-c6ed2353-a033-4071-bcd0-f93f11eaf7c9.png)
 
 5. Select **Save**.
 
@@ -382,7 +387,7 @@ To add a consumer group to your IoT hub, follow these steps:
 
     **Authentication mode**: Leave at the default.  
 
-![Stream_3](https://user-images.githubusercontent.com/53897474/158303731-61c4720e-d6e9-4d56-b659-8e06d4058529.png)
+![image](https://user-images.githubusercontent.com/53897474/158877010-e8f974e2-545e-4c12-ad58-dc6240453b56.png)
 
 5. Select **Save**.
 
@@ -422,19 +427,19 @@ FROM
 
 4. Replace `[YourOutputAlias]` with the output alias of the job.
 
-![Stream_4](https://user-images.githubusercontent.com/53897474/158303954-2352c9f8-b18f-47f9-be90-d8ee1ed0b5d8.png)
+![image](https://user-images.githubusercontent.com/53897474/158877055-ef16eddf-be7f-4f98-b33a-e9147db0d9ac.png)
 
 ### Run the Stream Analytics job
 
 1. In the Stream Analytics job, select **Overview**, then select **Start > Now > Start**. 
 2. Once the job successfully starts, the job status changes from Stopped to Running.
 
-![Stream_5](https://user-images.githubusercontent.com/53897474/158310269-4a83b495-7032-4e79-9721-79ec0e9b101a.png)
+![image](https://user-images.githubusercontent.com/53897474/158877111-13679f4e-dcfd-4b47-95d8-881ff0527b09.png)
 
 3. Start your sensor board and let it run until data packets have been sent. You can keep track of this using the "Monitoring Payloads sent to Azure" section of this walkthrough. 
 4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming packets being received. 
 
-![Stream_6](https://user-images.githubusercontent.com/53897474/158312924-05a7fac4-01b3-4498-8850-06fe880f3e20.png)
+![image](https://user-images.githubusercontent.com/53897474/158877161-71d2e3b2-3c1e-46eb-9122-d0e87678cd36.png)
 
 ### Create a Power BI report
 
@@ -443,38 +448,38 @@ FROM
 4. Under the **All** tab, you should see the dataset that you specified when you created the output for the Stream Analytics job.
 5. Hover over the dataset you created, select More options menu (the three dots to the right of the dataset name), and then select Create report.
 
-![Stream_7](https://user-images.githubusercontent.com/53897474/158313254-17fe5a56-e725-48ed-a497-c70067b564d8.png)
+![image](https://user-images.githubusercontent.com/53897474/158877208-0b146853-4a77-4c75-a023-02207ff16d5c.png)
 
 ### Configure a Power BI report to visualize the data
 
 1. Select charts, tables and maps from the **Visualizations** menu to design your dashboard.
 
-![Stream_8](https://user-images.githubusercontent.com/53897474/158314074-11abb2c0-3aff-4e3b-b6e0-6448a3fdadee.png)
+![image](https://user-images.githubusercontent.com/53897474/158877256-101ead23-694a-4bc7-ae30-c4c57e9d7ff2.png)
 
 2. As an example, the configuration for the Line Chart Visualization is as follows:
 * drag **Temperature** into the **Values** section, and **EventEnqueuedUtcTime** into the **Axis** section.
 
-![Stream_9](https://user-images.githubusercontent.com/53897474/158314679-522ea6b1-fb7b-48ed-9500-1ba79868f085.png)
+![image](https://user-images.githubusercontent.com/53897474/158877287-70cbca69-710f-44b6-b58d-22452e11f07d.png)
 
 ### Share the report
 
 1. Select **Save** to save the report. When prompted, enter a name for your report. When prompted for a sensitivity label, you can select **Public** and then select **Save**.
 
-![Stream_10](https://user-images.githubusercontent.com/53897474/158463523-e7d53de7-dbd9-4955-a4f3-12656cfc6c9e.png)
+![image](https://user-images.githubusercontent.com/53897474/158877321-81287cd1-5d5d-40b9-ad97-b4413e901bff.png)
 
 2. Still on the report pane, select File > Embed report > Website or portal.
 
-![Stream_11](https://user-images.githubusercontent.com/53897474/158464085-f278e198-fe58-436b-b813-1fbcf2e3f4e1.png)
+![image](https://user-images.githubusercontent.com/53897474/158877347-64dad571-a426-473c-9943-910b8c83ae5d.png)
 
 * NOTE: If you get a notification to contact your administrator to enable embed code creation, you may need to contact them. Embed code creation must be enabled before you can complete this step.
 
 3. You're provided the report link that you can share with anyone for report access and a code snippet that you can use to integrate the report into a blog or website. Copy the link in the Secure embed code window and then close the window.
 
-![Stream_12](https://user-images.githubusercontent.com/53897474/158464973-db6ffdfd-3cd1-49d8-9f4e-e6671b0655b1.png)
+![image](https://user-images.githubusercontent.com/53897474/158877389-de607315-3bf2-4fc4-a52e-e565c06cf0b9.png)
 
 4. Open a web browser and paste the link into the address bar.
 
-![Stream_13](https://user-images.githubusercontent.com/53897474/158465257-fc6db837-5869-4277-80d5-534bbac2e22a.png)
+![image](https://user-images.githubusercontent.com/53897474/158877428-24f29f1a-97a6-4b87-918a-994cb999b173.png)
 
 ### Done
 
