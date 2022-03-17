@@ -66,23 +66,24 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 6. [Tera Term 4.106](https://osdn.net/projects/ttssh2/releases/)
 
 #### Windows
-Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their user or systems PATH environment variables:
+Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their user or systems PATH environment variables before proceeding:
 
-Right click on **My Computer** or **This PC** and select **Properties**.
+1. Right click on **My Computer** or **This PC** and select **Properties**.
 ![image](https://user-images.githubusercontent.com/53897474/158488241-2ec16e0a-3eab-411c-ac95-1413398c7962.png)
 
-Select **Advanced system settings**.
+2. Select **Advanced system settings**.
 ![image](https://user-images.githubusercontent.com/53897474/158488261-8f7026ee-c8cc-4efe-b19b-28e709a23d75.png)
 
-In the **Advanced** tab, select **Environment Variables...**.
+3. In the **Advanced** tab, select **Environment Variables...**.
 ![image](https://user-images.githubusercontent.com/53897474/158872785-fe5a5685-6b8b-4c28-8083-25f375733a62.png)
 
-In the **System variables** section, double click on **Path** to edit path variables.
+4. In the **System variables** section, double click on **Path** to edit path variables.
 ![image](https://user-images.githubusercontent.com/53897474/158488306-a20e1dc9-7df6-4bcd-b819-fcc68db5b7bf.png)
 
-Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click **Browse...** and navigate to the folder it was installed.
+5. Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click **Browse...** and navigate to the folder it was installed.
 ![image](https://user-images.githubusercontent.com/53897474/158488342-6d4fd7ae-4fab-4f93-ba68-e67c45ce03e9.png)
-Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
+
+6. Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
 
 ### Install PIP, the Python Package Installer
 
@@ -130,7 +131,9 @@ The import will take a while, and we can’t do too much more with the client un
 
 ### Setting Up Your Azure Account
 
-Microsoft’s Azure is incredibly useful cloud platform that has built-in support for IoT and allows for simple integration with several other services. If you don’t already have an Azure account you can sign up for a free trial which comes bundled with $250 of free credits:
+We will be using Microsoft Azure to link the IoT device to the cloud. Azure is an incredibly useful cloud platform that has built-in support for IoT and allows for simple integration with several other services.
+
+If you don’t already have an Azure account you can sign up for a free trial which comes bundled with $250 of free credits:
 https://azure.microsoft.com/en-ca/
 
 Also make sure to check that you can create a Power BI account with the same email. Power BI 
@@ -138,26 +141,24 @@ https://powerbi.microsoft.com/en-ca/
 
 ### Creating Your IoT Hub
 
-Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard
-* Click on **Create a resource**
+Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard. This will be our central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and act on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured, and visibility to that data is also protected. 
 
+* Click on **Create a resource**
 ![alt text](images/iot_hub_create.png)
 
 * Give your IoT a unique name
 * Place it in the Canada East region and make sure your Subscription is set to **Free Trial**. 
 * Your new IoT Hub should look similar to this:
-
 ![alt text](images/iot_hub_config.png)
 
 * Proceed to **Review and Create** then create your instance. This may take a couple of minutes.
 
-Now our IoT Hub is created! This will be our central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and action on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured and visibility to that data is also protected. As a next step we are going to retrieve keys that we can use to securely transport and monitor the data being sent between our IoT devices and our newly created Azure IoT Hub.
+Now our IoT Hub is created! As a next step, we are going to retrieve keys that we can use to securely transport and monitor the data being sent between our IoT devices and our newly created Azure IoT Hub.
 
 * Open your newly created IoT Hub instance, then select **Shared Access Policies** from the left-hand pane which will bring up a list of pre-created policies
 * Select the one labeled **iothubowner**. 
 * A new right-hand pane will appear with a list of **Shared access keys**. 
 * Copy the one labeled **Connection string - primary key** and store it someplace safe for later.
-
 ![alt text](images/iot_hub_connection_string.png)
 
 The primary key we just copied can be used from the Azure command-line to monitor all traffic being sent from our IoT devices to the Hub. We will come back to the key once we have the IoT device configured, for now there’s nothing being sent to the Hub, so monitoring would be a bit boring…
@@ -168,7 +169,6 @@ The next step is to create an IoT Device instance within your IoT Hub, this will
 * Open your IoT Hub
 * From the left-pane, select **IoT Devices**
 * Then click the **Add** button to create your new device.
-
 ![alt text](images/iot_hub_new_device.png)
 
 * Give your new device a name that is relevant to your project, this will be how you will identify the source of the data sent to your Hub. 
@@ -177,7 +177,6 @@ The next step is to create an IoT Device instance within your IoT Hub, this will
 
 * Now that your IoT device is created, click it to bring up its “Device Details” screen. 
 * From this screen copy the **Connection String - primary key** and store it with the primary key you copied earlier from the IoT Hub creation step.
-
 ![alt text](images/iot_device_connection_string.png)
 
 * This primary key will be loaded to your IoT device to secure the communications channel between it and your IoT Hub.
@@ -196,19 +195,21 @@ Getting back to the “Download the Avnet Azure IoT Client” step from earlier 
 
 This file handles the sensor information gathering from the IoT board sensors, crafting the sensor data into a message payload and communicating that payload to Azure. In this tutorial we’ll leave the file logic pretty much as-is, but if you feel the need to modify the function of the board, I recommend looking back to this file at a later time.
 
-The only thing we need to configure in this file is the name of the IoT device (`deviceId`, line 83) and setting the connection string (`connectionString`, line 81). Set the device ID to the name you used for the IoT device in Azure, and set the connection string to the “Connection String - primary key” we just copied a couple steps ago when creating the IoT device. One thing to note, the device ID is actually part of the connection string. Below is a screenshot of my configured file:
+The only thing we need to configure in this file is **connectionString** (`line 81`) and the **deviceId** (`line 83`). 
 
-![image](https://user-images.githubusercontent.com/53897474/158873099-cd98199e-0acc-4c77-9f08-d7713a5a0f7a.png)
+1. Set **connectionString** to the **Connection String - primary key** we just copied a couple steps ago when creating the IoT device. 
+2. Set the **deviceId** to the name you used for the IoT device in Azure. 
+* NOTE: The deviceId is actually part of the connection string. 
+* Below is a screenshot of my configured file:
+![image](https://user-images.githubusercontent.com/53897474/158883663-098a1eee-3be2-4c2e-86bd-b7e43fd42084.png)
 
 #### mbed_settings.py
 
-In this file we need to update the `GCC_ARM_PATH` value to the location where you extracted the **GNU ARM Embedded Toolchain**. 
+In this file we need to update the **GCC_ARM_PATH** value (line 32) to the location where you extracted the **GNU ARM Embedded Toolchain**. 
 In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to  
 `/C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/`
-
-![image](https://user-images.githubusercontent.com/53897474/158873140-dbc64dd8-30c7-4997-ad45-0c59e0bf47cb.png)
-
-NOTE: Ensure the location has a `/` at each end.
+* NOTE: Ensure the location has a `/` at each end.
+![image](https://user-images.githubusercontent.com/53897474/158878203-92c825be-f4f6-4857-aca8-474a84ff598f.png)
 
 ## Compile Time!
 
@@ -247,12 +248,10 @@ Here’s an example of the payload sent from my device:
 
 The actual data fed into your Azure function will be the JSON contents of the `payload` object.
 
-### Monitoring Data
+## Monitoring Data
 
 If all goes well, your hub will start receiving the data from your board without incident. If any issues arise, or you just want to have a better idea of what is being sent to your Hub, it would be helpful to be able to see what exactly your board is doing and the raw data being sent.
-
-### See Your Board Status
-
+  
 With the IoT board connected to your computer, you are able to analyze the board status through the COM port.
 
 #### MacOS
@@ -260,6 +259,8 @@ With the IoT board connected to your computer, you are able to analyze the board
 2. Issue the command screen /dev/tty.usbmodemxxxxx 115200 (where xxxxx is for your particular Mac).  This connects to your device and displays the terminal output with baud rate of 115200.
 
 #### Windows
+Tera Term enables us to monitor messages from the board through the COM port connected to the PC. Follow these steps:
+  
 1. Open Tera Term, select **Serial** and **OK** to connect to the board through the COM port.
 ![Tera_1](https://user-images.githubusercontent.com/53897474/158283699-37a1a32f-ab6d-4f29-b91c-125c9fb77e83.png)
 
@@ -270,7 +271,6 @@ With the IoT board connected to your computer, you are able to analyze the board
 ![Tera_3](https://user-images.githubusercontent.com/53897474/158283827-c3dd35cd-0c17-4a84-a543-452b0d3c2e06.png)
 
 If you don’t see anything in the terminal after following the above steps, press the black “RESET B2” button on the white board, this will reboot the board and should present you with a screen similar to this one in the terminal:
-
 ![Tera_4](https://user-images.githubusercontent.com/53897474/158283873-b790b8b8-91a5-4ba9-b95a-0b3d63a333a4.png)
 
 If it is still having trouble connecting, place your board near a window to get better reception. 
@@ -289,7 +289,6 @@ The Azure CLI tool will let us monitor the payloads sent from the board to Azure
 * `az iot hub monitor-events --login "<your_connection_string"`
 
 If all goes well you will start seeing JSON payloads as they are sent to the server:
-
 ![alt text](images/azure_cli_output.png)
 
 ### Done
@@ -299,10 +298,13 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 * Registered your IoT device on the Azure IoT Hub
 * Compiled the Azure IoT MBed client and loaded it onto your IoT device
 * Successfully sent data from your IoT device to Azure IoT Hub
+* Monitored the contents of the incoming JSON packets with the Azure CLI tool 
 
 The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
 
 # Part 2: Displaying IoT data in a Power BI dashboard
+
+Dashboards are useful tools to provide views of data that can update automatically. For this project, I made a dashboard to display Temperature and Humidity data recorded by the Nucleo board, displayed on line charts. I also showed the GPS coordinates of the board at the time of recording, displayed on a map.
 
 ### Add a consumer group to your IoT hub
 
@@ -317,8 +319,9 @@ To add a consumer group to your IoT hub, follow these steps:
 
 ### Create a Stream Analytics job
 
-1. In the Azure portal, select **Create a resource**. 
+Stream Analytics jobs allow us to grab an **input**, **process** it with a query, and send an **output** to a specified location. In this case, we will be grabbing the sensor data sent by the Nucleo board (**input**), **processing** it with a SQL query, and then sending it to Power BI (**output**) to be displayed on a dashboard.
 
+1. In the Azure portal, select **Create a resource**. 
 ![image](https://user-images.githubusercontent.com/53897474/158875955-2c17f1c8-20d5-4388-86e2-4da128a7832f.png)
 
 2. Type **Stream Analytics Job** in the search box and select it from the drop-down list. 
@@ -330,7 +333,7 @@ To add a consumer group to your IoT hub, follow these steps:
    **Resource group**: Use the same resource group that your IoT hub uses.  
    
    **Location**: Use the same location as your resource group.  
-   
+  
 ![image](https://user-images.githubusercontent.com/53897474/158876258-30fdb7c0-a42f-4ff2-b2bc-07bd4cbc0215.png)
 
 5. Select **Create**.  
@@ -340,7 +343,6 @@ To add a consumer group to your IoT hub, follow these steps:
 1. Open the Stream Analytics job.
 2. Under Job topology, select **Inputs**.
 3. In the Inputs pane, select **Add stream input** and select **IoT Hub** from the drop-down list. 
-
 ![image](https://user-images.githubusercontent.com/53897474/158876858-55fb7df0-b88c-4a71-95f5-cb83ad22ff57.png)
 
 4. On the new input pane, enter the following information:  
@@ -362,7 +364,7 @@ To add a consumer group to your IoT hub, follow these steps:
     **Consumer group**: Select the consumer group you created previously.  
     
     **Leave all other fields at their defaults.**  
-
+  
 ![image](https://user-images.githubusercontent.com/53897474/158876941-c6ed2353-a033-4071-bcd0-f93f11eaf7c9.png)
 
 5. Select **Save**.
@@ -386,7 +388,7 @@ To add a consumer group to your IoT hub, follow these steps:
     **Table name**: Enter a table name.  
 
     **Authentication mode**: Leave at the default.  
-
+  
 ![image](https://user-images.githubusercontent.com/53897474/158877010-e8f974e2-545e-4c12-ad58-dc6240453b56.png)
 
 5. Select **Save**.
@@ -426,19 +428,16 @@ FROM
 3. Replace `[YourInputAlias]` with the input alias of the job.
 
 4. Replace `[YourOutputAlias]` with the output alias of the job.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877055-ef16eddf-be7f-4f98-b33a-e9147db0d9ac.png)
 
 ### Run the Stream Analytics job
 
 1. In the Stream Analytics job, select **Overview**, then select **Start > Now > Start**. 
 2. Once the job successfully starts, the job status changes from Stopped to Running.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877111-13679f4e-dcfd-4b47-95d8-881ff0527b09.png)
 
 3. Start your sensor board and let it run until data packets have been sent. You can keep track of this using the "Monitoring Payloads sent to Azure" section of this walkthrough. 
 4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming packets being received. 
-
 ![image](https://user-images.githubusercontent.com/53897474/158877161-71d2e3b2-3c1e-46eb-9122-d0e87678cd36.png)
 
 ### Create a Power BI report
@@ -447,38 +446,31 @@ FROM
 2. Select the workspace you used from the side menu, **My Workspace**.
 4. Under the **All** tab, you should see the dataset that you specified when you created the output for the Stream Analytics job.
 5. Hover over the dataset you created, select More options menu (the three dots to the right of the dataset name), and then select Create report.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877208-0b146853-4a77-4c75-a023-02207ff16d5c.png)
 
 ### Configure a Power BI report to visualize the data
 
 1. Select charts, tables and maps from the **Visualizations** menu to design your dashboard.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877256-101ead23-694a-4bc7-ae30-c4c57e9d7ff2.png)
 
 2. As an example, the configuration for the Line Chart Visualization is as follows:
 * drag **Temperature** into the **Values** section, and **EventEnqueuedUtcTime** into the **Axis** section.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877287-70cbca69-710f-44b6-b58d-22452e11f07d.png)
 
 ### Share the report
 
 1. Select **Save** to save the report. When prompted, enter a name for your report. When prompted for a sensitivity label, you can select **Public** and then select **Save**.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877321-81287cd1-5d5d-40b9-ad97-b4413e901bff.png)
 
 2. Still on the report pane, select File > Embed report > Website or portal.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877347-64dad571-a426-473c-9943-910b8c83ae5d.png)
 
 * NOTE: If you get a notification to contact your administrator to enable embed code creation, you may need to contact them. Embed code creation must be enabled before you can complete this step.
 
 3. You're provided the report link that you can share with anyone for report access and a code snippet that you can use to integrate the report into a blog or website. Copy the link in the Secure embed code window and then close the window.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877389-de607315-3bf2-4fc4-a52e-e565c06cf0b9.png)
 
 4. Open a web browser and paste the link into the address bar.
-
 ![image](https://user-images.githubusercontent.com/53897474/158877428-24f29f1a-97a6-4b87-918a-994cb999b173.png)
 
 ### Done
