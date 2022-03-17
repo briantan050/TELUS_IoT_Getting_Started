@@ -184,7 +184,7 @@ The next step is to create an IoT Device instance within your IoT Hub, this will
 
 ### Configure Your IoT Device for Azure
 
-Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “**azure-iot-mbed-client**”, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice, the screenshots from below are from [Atom](https://atom.io/), but you could also use Notepad or Notepad++:
+Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “**azure-iot-mbed-client**”, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice (**Notepad** or **Notepad++** work fine too):
 1. **AvnetBG96_azure_client.cpp**
 2. **mbed_settings.py**
 * The **azure-iot-mbed-client** folder can be found in the current directory as shown in the command prompt. These folders may be different for you:
@@ -298,7 +298,7 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 * Registered your IoT device on the Azure IoT Hub
 * Compiled the Azure IoT MBed client and loaded it onto your IoT device
 * Successfully sent data from your IoT device to Azure IoT Hub
-* Monitored the contents of the incoming JSON packets with the Azure CLI tool 
+* Monitored the contents of the incoming JSON payloads with the Azure CLI tool 
 
 The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
 
@@ -402,7 +402,7 @@ Stream Analytics jobs allow us to grab an **input**, **process** it with a query
 
 ### Configure the query of the Stream Analytics job
 
-Even though the data packets can be sent and received successfully, the data will still arrive as text strings, making it impossible to display as numeric data on charts. We will therefore need to run a SQL query to process some of the data so that it can be sent to the Power BI report in a useable data format. In this step, we will use the `CAST()` function to convert the relevant variables into `float` format. 
+Even though the data payloads can be sent and received successfully, the data will still arrive as text strings, making it impossible to display as numeric data on charts. We will therefore need to run a SQL query to process some of the data so that it can be sent to the Power BI report in a useable data format. In this step, we will use the `CAST()` function to convert the relevant variables into `float` format. 
 
 1. Under Job topology, select **Query**.
 
@@ -445,8 +445,8 @@ FROM
 2. Once the job successfully starts, the job status changes from Stopped to Running.
 ![image](https://user-images.githubusercontent.com/53897474/158877111-13679f4e-dcfd-4b47-95d8-881ff0527b09.png)
 
-3. Start your sensor board and let it run until data packets have been sent. You can keep track of this using the **Monitoring Payloads sent to Azure** section of this walkthrough. 
-4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming packets being received. 
+3. Start your sensor board and let it run until data payloads have been sent. You can keep track of this using the **Monitoring Payloads sent to Azure** section of this walkthrough. 
+4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming payloads being received. 
 ![image](https://user-images.githubusercontent.com/53897474/158877161-71d2e3b2-3c1e-46eb-9122-d0e87678cd36.png)
 
 ### Create a Power BI report
