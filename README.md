@@ -205,7 +205,7 @@ The only thing we need to configure in this file is **connectionString** (`line 
 
 #### mbed_settings.py
 
-In this file we need to update the **GCC_ARM_PATH** value (line 32) to the location where you extracted the **GNU ARM Embedded Toolchain**. 
+In this file we need to update the **GCC_ARM_PATH** value (`line 32`) to the location where you extracted the **GNU ARM Embedded Toolchain**. 
 In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to  
 `/C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/`
 * NOTE: Ensure the location has a `/` at each end.
@@ -302,9 +302,16 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 
 The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
 
-# Part 2: Displaying IoT data in a Power BI dashboard
+# Part 2: Displaying IoT data in a Power BI report
 
-Dashboards are useful tools to provide views of data that can update automatically. For this project, I made a dashboard to display Temperature and Humidity data recorded by the Nucleo board, displayed on line charts. I also showed the GPS coordinates of the board at the time of recording, displayed on a map.
+Dashboards are useful tools to provide views of data that can update automatically. For this project, I made a dashboard via a Power BI report. It displayed Temperature and Humidity data recorded by the Nucleo board, displayed on line charts, and also showed the GPS coordinates of the board at the time of recording, displayed on a map.
+
+The list of steps is as follows:
+* Add a consumer group to your IoT hub
+* Create, configure and run a Stream Analytics job
+* Create and configure a Power BI report
+* Share the report
+
 
 ### Add a consumer group to your IoT hub
 
@@ -319,7 +326,7 @@ To add a consumer group to your IoT hub, follow these steps:
 
 ### Create a Stream Analytics job
 
-Stream Analytics jobs allow us to grab an **input**, **process** it with a query, and send an **output** to a specified location. In this case, we will be grabbing the sensor data sent by the Nucleo board (**input**), **processing** it with a SQL query, and then sending it to Power BI (**output**) to be displayed on a dashboard.
+Stream Analytics jobs allow us to grab an **input**, **process** it with a query, and send an **output** to a specified location. In this case, we will be grabbing the sensor data sent by the Nucleo board (**input**), **processing** it with a SQL query, and then sending it to Power BI (**output**) to be displayed on a Power BI report.
 
 1. In the Azure portal, select **Create a resource**. 
 ![image](https://user-images.githubusercontent.com/53897474/158875955-2c17f1c8-20d5-4388-86e2-4da128a7832f.png)
@@ -395,6 +402,8 @@ Stream Analytics jobs allow us to grab an **input**, **process** it with a query
 
 ### Configure the query of the Stream Analytics job
 
+Even though the data packets can be sent and received successfully, the data will still arrive as text strings, making it impossible to display as numeric data on charts. We will therefore need to run a SQL query to process some of the data so that it can be sent to the Power BI report in a useable data format. In this step, we will use the `CAST()` function to convert the relevant variables into `float` format. 
+
 1. Under Job topology, select **Query**.
 
 2. Replace the SQL query with the following:  
@@ -436,16 +445,18 @@ FROM
 2. Once the job successfully starts, the job status changes from Stopped to Running.
 ![image](https://user-images.githubusercontent.com/53897474/158877111-13679f4e-dcfd-4b47-95d8-881ff0527b09.png)
 
-3. Start your sensor board and let it run until data packets have been sent. You can keep track of this using the "Monitoring Payloads sent to Azure" section of this walkthrough. 
+3. Start your sensor board and let it run until data packets have been sent. You can keep track of this using the **Monitoring Payloads sent to Azure** section of this walkthrough. 
 4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming packets being received. 
 ![image](https://user-images.githubusercontent.com/53897474/158877161-71d2e3b2-3c1e-46eb-9122-d0e87678cd36.png)
 
 ### Create a Power BI report
 
+A Power BI report displays data from your dataset in a layout that you can design and configure yourself. We will be using the Power BI report to create a dashboard to display the sensor data.
+
 1. Sign in to your Power BI account and select Power BI service from the top menu.
 2. Select the workspace you used from the side menu, **My Workspace**.
 4. Under the **All** tab, you should see the dataset that you specified when you created the output for the Stream Analytics job.
-5. Hover over the dataset you created, select More options menu (the three dots to the right of the dataset name), and then select Create report.
+5. Hover over the dataset you created, select More options menu (the three dots to the right of the dataset name), and then select **Create report**.
 ![image](https://user-images.githubusercontent.com/53897474/158877208-0b146853-4a77-4c75-a023-02207ff16d5c.png)
 
 ### Configure a Power BI report to visualize the data
