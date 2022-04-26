@@ -312,6 +312,7 @@ The list of steps is as follows:
 * Create and configure a Power BI report
 * Share the report
 
+IMPORTANT NOTE: The Stream Analytics job may deplete the user's free credits and eventually cost additional funds to maintain. It must be closely monitored to make sure that it does not incur unwanted fees.
 
 ### Add a consumer group to your IoT hub
 
