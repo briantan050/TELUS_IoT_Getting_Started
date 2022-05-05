@@ -5,14 +5,22 @@ This 3-part tutorial will help get you started with the TELUS LTE-M IoT Starter 
 * **Part 2** will walk you through using the IoT data in a logic app with the Copernicus open access hub API. 
 * **Part 3** will walk you through displaying the IoT data in a Power BI dashboard.
 
+### IoT to Cloud
+Internet of things devices provide low-cost solutions for remote data collection. The Telus IoT Starter Kit provides hardware for remote data collection for use with a cellular IoT SIM card. This tutorial will walk you through the setup and configuration of the kit so that you can start collecting IoT data and send it to the cloud for further action. 
 
-### Requirements for Part 1
+The list of steps is as follows:
+* Configuring your IoT hardware
+* Configuring your software
+* Compiling the code
+* Monitoring data
+
+### Requirements
 1. [Telus IOT Starter Kit](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-bg96-iot-sk2-g-3074457345636408150?INTCMP=tbs_low-power-wide-area_button_buy-your-kit)
 2. [Microsoft Azure Account](https://azure.microsoft.com/en-ca/)
 3. Basic knowledge of Command-Line Interface is an asset
 4. Basic knowledge of SQL is an asset
 
-**Important note**: If you intend to complete **Part 3** of the walkthrough, it is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting. Register with [this link](https://powerbi.microsoft.com/en-ca/) (may require a work-email to register). 
+**IMPORTANT NOTE**: If you intend to complete **Part 3** of the walkthrough, it is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting. Register with [this link](https://powerbi.microsoft.com/en-ca/) (may require a work-email to register). 
 
 ### The Kit
 The Kit Consists of 3 Parts:
@@ -48,7 +56,7 @@ Connect the BG96 with sensor module to the L496 MCU so it looks like below:
 
 Now your hardware is ready to be connected and programmed.
 
-# Getting Your Software and Services Configured
+# Configuring your software
 ### Pre-Requisites (Download and Extract/Install)
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
 1. [Git 2.35.1.2](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -196,7 +204,7 @@ In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-updat
 * NOTE: Ensure the location has a `/` at each end.
 ![image](https://user-images.githubusercontent.com/53897474/158878203-92c825be-f4f6-4857-aca8-474a84ff598f.png)
 
-# Compile Time!
+# Compiling the code
 The following steps will get your client compiled and loaded to your board:
 1. Run the terminal or command-line on your Mac or Windows PC respectively
 2. Change the directory to azure-iot-mbed-client (this is created in the same directory where we ran `mbed import` above) by running the following command:
@@ -232,16 +240,16 @@ Here’s an example of the payload sent from my device:
 
 The actual data fed into your Azure function will be the JSON contents of the `payload` object.
 
-## Monitoring Data
+# Monitoring Data
 If all goes well, your hub will start receiving the data from your board without incident. If any issues arise, or you just want to have a better idea of what is being sent to your Hub, it would be helpful to be able to see what exactly your board is doing and the raw data being sent.
   
 With the IoT board connected to your computer, you are able to analyze the board status through the COM port.
 
-#### MacOS
+### MacOS
 1. From your terminal and issue the command ls /dev/tty.*  This will show all the serial ports you have.  Look for /dev/tty.usbmodemxxxxx (on my Mac it was 14203), which will be the board
 2. Issue the command screen /dev/tty.usbmodemxxxxx 115200 (where xxxxx is for your particular Mac).  This connects to your device and displays the terminal output with baud rate of 115200.
 
-#### Windows
+### Windows
 Tera Term enables us to monitor messages from the board through the COM port connected to the PC. Follow these steps:
   
 1. Open Tera Term, select **Serial** and **OK** to connect to the board through the COM port.
