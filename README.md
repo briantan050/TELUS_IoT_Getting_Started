@@ -7,7 +7,6 @@ This 3-part tutorial will help get you started with the TELUS LTE-M IoT Starter 
 
 
 ### Requirements for Part 1
-
 1. [Telus IOT Starter Kit](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-bg96-iot-sk2-g-3074457345636408150?INTCMP=tbs_low-power-wide-area_button_buy-your-kit)
 2. [Microsoft Azure Account](https://azure.microsoft.com/en-ca/)
 3. Basic knowledge of Command-Line Interface is an asset
@@ -16,7 +15,6 @@ This 3-part tutorial will help get you started with the TELUS LTE-M IoT Starter 
 **Important note**: If you intend to complete **Part 3** of the walkthrough, it is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting. Register with [this link](https://powerbi.microsoft.com/en-ca/) (may require a work-email to register). 
 
 ### The Kit
-
 The Kit Consists of 3 Parts:
 1. **BG96 shield** Cat.M1/NB1 & EGPRS module with added support for GPS
 A 2FF SIM connector accommodates the TELUS Starter SIM that is included in the kit for connecting to the internet via TELUS’ virtual dedicated IoT network
@@ -31,7 +29,6 @@ ARM Mbed OS is a free, open-source embedded operating system designed specifical
 It includes all the features you need to develop a connected product based on an ARM Cortex-M microcontroller, including security, connectivity, an RTOS, and drivers for sensors and I/O devices. We will be using MBed OS to compile the code for the Nucleo L496ZG Microcontroller.
 
 # Configuring Your IoT Hardware
-
 The BG96 and X-NUCLEO-IKS01A2 are already connected to each other in the box.  Ensure that the switch is in the SIM position. Some important parts of the board are below:
 
 Ensure the SIM switch is in the `SIM` position, and the SIM is inserted with the notch close to the switch.
@@ -52,7 +49,6 @@ Connect the BG96 with sensor module to the L496 MCU so it looks like below:
 Now your hardware is ready to be connected and programmed.
 
 # Getting Your Software and Services Configured
-
 ### Pre-Requisites (Download and Extract/Install)
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
 1. [Git 2.35.1.2](https://git-scm.com/book/en/v2/Getting-Started-Installing-Git)
@@ -83,7 +79,6 @@ Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their 
 6. Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
 
 ### Install PIP, the Python Package Installer
-
 PIP is a command-line tool that installs Python packages, it is the standard for installing requirements for Python projects and we will need to use it to gather dependencies before we can compile the MBED-OS.
 
 1. Open the command prompt. In Windows, this is done by searching **CMD**
@@ -125,9 +120,7 @@ Get the client downloaded by running the following from the command-line, this w
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
 
 # Configuring Azure
-
 ### Setting Up Your Azure Account
-
 We will be using Microsoft Azure to link the IoT device to the cloud. Azure is an incredibly useful cloud platform that has built-in support for IoT and allows for simple integration with several other services.
 
 If you don’t already have an Azure account you can sign up for a free trial which comes bundled with $250 of free credits to use for 1 month:
@@ -137,7 +130,6 @@ Also, if you intend to complete Part 2, make sure to check that you can create a
 https://powerbi.microsoft.com/en-ca/
 
 ### Creating Your IoT Hub
-
 Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard. This will be our central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and act on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured, and visibility to that data is also protected. 
 
 * Click on **Create a resource**
@@ -161,7 +153,6 @@ Now our IoT Hub is created! As a next step, we are going to retrieve keys that w
 The primary key we just copied can be used from the Azure command-line to monitor all traffic being sent from our IoT devices to the Hub. We will come back to the key once we have the IoT device configured, for now there’s nothing being sent to the Hub, so monitoring would be a bit boring…
 
 ### Create Your IoT Device
-
 The next step is to create an IoT Device instance within your IoT Hub, this will be mapped directly to the physical IoT Device you are using. 
 * Open your IoT Hub
 * From the left-pane, select **IoT Devices**
@@ -180,7 +171,6 @@ The next step is to create an IoT Device instance within your IoT Hub, this will
 * At this point we have everything we need to complete the configuration of your TELUS LTE-M IoT Starter Kit, so we’ll jump back there.
 
 ### Configure Your IoT Device for Azure
-
 Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “**azure-iot-mbed-client**”, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice (**Notepad** or **Notepad++** work fine too):
 1. **AvnetBG96_azure_client.cpp**
 2. **mbed_settings.py**
@@ -189,7 +179,6 @@ Getting back to the “Download the Avnet Azure IoT Client” step from earlier 
 ![image](https://user-images.githubusercontent.com/53897474/158875246-14d65349-def8-40a4-bdba-c183e38965ae.png)
 
 #### AvnetBG96_azure_client.cpp
-
 This file handles the sensor information gathering from the IoT board sensors, crafting the sensor data into a message payload and communicating that payload to Azure. In this tutorial we’ll leave the file logic pretty much as-is, but if you feel the need to modify the function of the board, I recommend looking back to this file at a later time.
 
 The only thing we need to configure in this file is **connectionString** (`line 81`) and the **deviceId** (`line 83`). 
@@ -201,7 +190,6 @@ The only thing we need to configure in this file is **connectionString** (`line 
 ![image](https://user-images.githubusercontent.com/53897474/158883663-098a1eee-3be2-4c2e-86bd-b7e43fd42084.png)
 
 #### mbed_settings.py
-
 In this file we need to update the **GCC_ARM_PATH** value (`line 32`) to the location where you extracted the **GNU ARM Embedded Toolchain**. 
 In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to  
 `/C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/`
@@ -209,7 +197,6 @@ In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-updat
 ![image](https://user-images.githubusercontent.com/53897474/158878203-92c825be-f4f6-4857-aca8-474a84ff598f.png)
 
 # Compile Time!
-
 The following steps will get your client compiled and loaded to your board:
 1. Run the terminal or command-line on your Mac or Windows PC respectively
 2. Change the directory to azure-iot-mbed-client (this is created in the same directory where we ran `mbed import` above) by running the following command:
@@ -246,7 +233,6 @@ Here’s an example of the payload sent from my device:
 The actual data fed into your Azure function will be the JSON contents of the `payload` object.
 
 ## Monitoring Data
-
 If all goes well, your hub will start receiving the data from your board without incident. If any issues arise, or you just want to have a better idea of what is being sent to your Hub, it would be helpful to be able to see what exactly your board is doing and the raw data being sent.
   
 With the IoT board connected to your computer, you are able to analyze the board status through the COM port.
@@ -275,7 +261,6 @@ If it is still having trouble connecting, place your board near a window to get 
 Output will continue to produce as the board makes repeated network sends to Azure. You won’t, however, get to see the actual payload being sent.
 
 ### Monitoring Payloads Sent to Azure
-
 The Azure CLI tool will let us monitor the payloads sent from the board to Azure. The following commands will let you see the payloads sent in real-time:
 1. Issue the following command to log in to Azure from the command-line
 * `az login`
@@ -289,7 +274,6 @@ If all goes well you will start seeing JSON payloads as they are sent to the ser
 ![alt text](images/azure_cli_output.png)
 
 ## Done
-
 Your board is now sending sensor data to Azure IoT Hub on a regular basis. In this tutorial, you have completed the following:
 * Created an Azure IoT Hub
 * Registered your IoT device on the Azure IoT Hub
@@ -298,10 +282,11 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 * Monitored the contents of the incoming JSON payloads with the Azure CLI tool 
 
 ## Next steps
+Now that you are receiving sensor data in the Azure IoT Hub, the next step is to do something with it! Choose what to do next:
 * **Part 2** will connect the sensor data to an Azure Logic App, enabling you to perform specific actions with it. In this tutorial, we connect it with the Copernicus open data hub API to use the sensor's latitude and longitude to select a map and retrieve its URL for the user to download.
 * **Part 3** will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
 
-# Credits:
+## Credits:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://github.com/garettB/TELUS_IoT_Getting_Started)
 * Microsoft Azure's tutorial: [Visualize real-time sensor data from Azure IoT Hub using Power BI](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
 * Dinusha Kumarasiri's tutorial: [End to end IoT Solution with Azure IoT Hub, Event Grid and Logic Apps](https://youtu.be/Wb_QT0qHGOo)
