@@ -1,20 +1,19 @@
-# Telus IoT Starter Kit Walkthrough
+# Telus IoT Starter Kit Walkthrough: Part 1
 
-This tutorial will help get you started with the TELUS LTE-M IoT Starter Kit:
-* **Part 1** will give you some background on the kit and walk you through the entire process of getting the kit configured to send data to your own Microsoft Azure instance.
-* **Part 2** will walk you through displaying the IoT data in a Power BI dashboard.
+This 3-part tutorial will help get you started with the TELUS LTE-M IoT Starter Kit:
+* **Part 1** will give you some background on the kit and walk you through the process of getting the kit configured to send data to your own Microsoft Azure instance.
+* **Part 2** will walk you through using the IoT data in a logic app with the Copernicus open access hub API. 
+* **Part 3** will walk you through displaying the IoT data in a Power BI dashboard.
 
-![Power_BI_dashboard](https://user-images.githubusercontent.com/53897474/158296508-7f430d96-0576-4017-bcd5-acc24c4dd862.png)
 
-### Requirements for this walkthrough
+### Requirements for Part 1
 
 1. [Telus IOT Starter Kit](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-bg96-iot-sk2-g-3074457345636408150?INTCMP=tbs_low-power-wide-area_button_buy-your-kit)
-2. [Microsoft Power BI Account](https://powerbi.microsoft.com/en-ca/) (This may require a work-email to register)
-3. [Microsoft Azure Account](https://azure.microsoft.com/en-ca/) linked to the same email as Power BI account
-4. Basic knowledge of Command-Line Interface is an asset
-5. Basic knowledge of SQL is an asset
-  
-**Important note**: It is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting.  
+2. [Microsoft Azure Account](https://azure.microsoft.com/en-ca/)
+3. Basic knowledge of Command-Line Interface is an asset
+4. Basic knowledge of SQL is an asset
+
+**Important note**: If you intend to complete **Part 3** of the walkthrough, it is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting. Register with [this link](https://powerbi.microsoft.com/en-ca/) (may require a work-email to register). 
 
 ### The Kit
 
@@ -29,11 +28,9 @@ The NUCLEO-L496ZG micro-controller board is fitted with an STM32L496ZG micro-con
 ### MBed OS
 ARM Mbed OS is a free, open-source embedded operating system designed specifically for the "things" in the Internet of Things.
 
-It includes all the features you need to develop a connected product based on an ARM Cortex-M microcontroller, including security, connectivity, an RTOS, and drivers for sensors and I/O devices.
+It includes all the features you need to develop a connected product based on an ARM Cortex-M microcontroller, including security, connectivity, an RTOS, and drivers for sensors and I/O devices. We will be using MBed OS to compile the code for the Nucleo L496ZG Microcontroller.
 
-# Part 1: Sending IoT data to Microsoft Azure IoT Hub
-
-## Configuring Your IoT Hardware
+# Configuring Your IoT Hardware
 
 The BG96 and X-NUCLEO-IKS01A2 are already connected to each other in the box.  Ensure that the switch is in the SIM position. Some important parts of the board are below:
 
@@ -54,7 +51,7 @@ Connect the BG96 with sensor module to the L496 MCU so it looks like below:
 
 Now your hardware is ready to be connected and programmed.
 
-## Getting Your Software and Services Configured
+# Getting Your Software and Services Configured
 
 ### Pre-Requisites (Download and Extract/Install)
 There are several tools we’ll need to use throughout this tutorial, so let’s start by installing everything we can at this point:
@@ -127,16 +124,16 @@ Get the client downloaded by running the following from the command-line, this w
 
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
 
-## Configuring Azure
+# Configuring Azure
 
 ### Setting Up Your Azure Account
 
 We will be using Microsoft Azure to link the IoT device to the cloud. Azure is an incredibly useful cloud platform that has built-in support for IoT and allows for simple integration with several other services.
 
-If you don’t already have an Azure account you can sign up for a free trial which comes bundled with $250 of free credits:
+If you don’t already have an Azure account you can sign up for a free trial which comes bundled with $250 of free credits to use for 1 month:
 https://azure.microsoft.com/en-ca/
 
-Also make sure to check that you can create a Power BI account with the same email. Power BI 
+Also, if you intend to complete Part 2, make sure to check that you can create a Power BI account with the same email:
 https://powerbi.microsoft.com/en-ca/
 
 ### Creating Your IoT Hub
@@ -211,7 +208,7 @@ In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-updat
 * NOTE: Ensure the location has a `/` at each end.
 ![image](https://user-images.githubusercontent.com/53897474/158878203-92c825be-f4f6-4857-aca8-474a84ff598f.png)
 
-## Compile Time!
+# Compile Time!
 
 The following steps will get your client compiled and loaded to your board:
 1. Run the terminal or command-line on your Mac or Windows PC respectively
@@ -291,7 +288,7 @@ The Azure CLI tool will let us monitor the payloads sent from the board to Azure
 If all goes well you will start seeing JSON payloads as they are sent to the server:
 ![alt text](images/azure_cli_output.png)
 
-### Done
+## Done
 
 Your board is now sending sensor data to Azure IoT Hub on a regular basis. In this tutorial, you have completed the following:
 * Created an Azure IoT Hub
@@ -300,199 +297,11 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 * Successfully sent data from your IoT device to Azure IoT Hub
 * Monitored the contents of the incoming JSON payloads with the Azure CLI tool 
 
-The next section will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
+## Next steps
+* **Part 2** will connect the sensor data to an Azure Logic App, enabling you to perform specific actions with it. In this tutorial, we connect it with the Copernicus open data hub API to use the sensor's latitude and longitude to select a map and retrieve its URL for the user to download.
+* **Part 3** will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
 
-# Part 2: Displaying IoT data in a Power BI report
-
-Dashboards are useful tools to provide views of data that can update automatically. For this project, I made a dashboard via a Power BI report. It displayed Temperature and Humidity data recorded by the Nucleo board, displayed on line charts, and also showed the GPS coordinates of the board at the time of recording, displayed on a map.
-
-The list of steps is as follows:
-* Add a consumer group to your IoT hub
-* Create, configure and run a Stream Analytics job
-* Create and configure a Power BI report
-* Share the report
-
-IMPORTANT NOTE: The Stream Analytics job may deplete the user's free credits and eventually cost additional funds to maintain. It must be closely monitored to make sure that it does not incur unwanted fees.
-
-### Add a consumer group to your IoT hub
-
-Consumer groups provide independent views into the event stream that enable apps and Azure services to independently consume data from the same Event Hub endpoint. In this section, you add a consumer group to your IoT hub's built-in endpoint that is used later in this tutorial to pull data from the endpoint.
-
-To add a consumer group to your IoT hub, follow these steps:
-
-1. In the Azure portal, open your **IoT hub**.
-2. On the left pane, select **Built-in endpoints**. Enter a name for your new consumer group in the text box under Consumer groups.
-![image](https://user-images.githubusercontent.com/53897474/158875567-0ac1e403-10d7-4651-b5cf-64ba0ad142aa.png)
-3. Click anywhere outside the text box to save the consumer group.
-
-### Create a Stream Analytics job
-
-Stream Analytics jobs allow us to grab an **input**, **process** it with a query, and send an **output** to a specified location. In this case, we will be grabbing the sensor data sent by the Nucleo board (**input**), **processing** it with a SQL query, and then sending it to Power BI (**output**) to be displayed on a Power BI report.
-
-1. In the Azure portal, select **Create a resource**. 
-![image](https://user-images.githubusercontent.com/53897474/158875955-2c17f1c8-20d5-4388-86e2-4da128a7832f.png)
-
-2. Type **Stream Analytics Job** in the search box and select it from the drop-down list. 
-3. On the Stream Analytics job overview page, select **Create**
-4. Enter the following information for the job.  
-
-   **Job name**: The name of the job. The name must be globally unique.  
-   
-   **Resource group**: Use the same resource group that your IoT hub uses.  
-   
-   **Location**: Use the same location as your resource group.  
-  
-![image](https://user-images.githubusercontent.com/53897474/158876258-30fdb7c0-a42f-4ff2-b2bc-07bd4cbc0215.png)
-
-5. Select **Create**.  
-
-### Add an input to the Stream Analytics job
-
-1. Open the Stream Analytics job.
-2. Under Job topology, select **Inputs**.
-3. In the Inputs pane, select **Add stream input** and select **IoT Hub** from the drop-down list. 
-![image](https://user-images.githubusercontent.com/53897474/158876858-55fb7df0-b88c-4a71-95f5-cb83ad22ff57.png)
-
-4. On the new input pane, enter the following information:  
-
-    **Input alias**: Enter a unique alias for the input.  
-    
-    **Select IoT Hub from your subscription**: Select this radio button.  
-    
-    **Subscription**: Select the Azure subscription you're using for this tutorial.  
-    
-    **IoT Hub**: Select the IoT Hub you're using for this tutorial.  
-    
-    **Endpoint**: Select Messaging.  
-    
-    **Shared access policy name**: Select the name of the shared access policy you want the Stream Analytics job to use for your IoT hub. For this tutorial, you can select service. The service policy is created by default on new IoT hubs and grants permission to send and receive on cloud-side endpoints exposed by the IoT hub. To learn more, see Access control and permissions.  
-    
-    **Shared access policy key**: This field is autofilled based on your selection for the shared access policy name.  
-    
-    **Consumer group**: Select the consumer group you created previously.  
-    
-    **Leave all other fields at their defaults.**  
-  
-![image](https://user-images.githubusercontent.com/53897474/158876941-c6ed2353-a033-4071-bcd0-f93f11eaf7c9.png)
-
-5. Select **Save**.
-
-### Add an output to the Stream Analytics job
-
-1. Under Job topology, select **Outputs**.
-
-2. In the Outputs pane, select **Add**, and then select **Power BI** from the drop-down list.
-
-3. On the Power BI - New output pane, select **Authorize** and follow the prompts to sign in to your Power BI account.
-
-4. After you've signed in to Power BI, enter the following information:
-
-    **Output alias**: A unique alias for the output.  
-
-    **Group workspace**: Select your target group workspace.  
-
-    **Dataset name**: Enter a dataset name.  
-
-    **Table name**: Enter a table name.  
-
-    **Authentication mode**: Leave at the default.  
-  
-![image](https://user-images.githubusercontent.com/53897474/158877010-e8f974e2-545e-4c12-ad58-dc6240453b56.png)
-
-5. Select **Save**.
-
-### Configure the query of the Stream Analytics job
-
-Even though the data payloads can be sent and received successfully, the data will still arrive as text strings, making it impossible to display as numeric data on charts. We will therefore need to run a SQL query to process some of the data so that it can be sent to the Power BI report in a useable data format. In this step, we will use the `CAST()` function to convert the relevant variables into `float` format. 
-
-1. Under Job topology, select **Query**.
-
-2. Replace the SQL query with the following:  
-  
-```
-SELECT
-    ObjectName,
-    ObjectType,
-    CAST(Version AS float) as Version,
-    ReportingDevice,
-    CAST(Latitude AS float) as Latitude,
-    CAST(Longitude AS float) as Longitude,
-    CAST(GPSTime AS float) as GPSTime,
-    CAST(GPSDate AS float) as GPSDate,
-    CAST(Temperature AS float) as Temperature,
-    CAST(Humidity AS float) as Humidity,
-    CAST(Pressure AS float) as Pressure,
-    CAST(Tilt AS float) as Tilt,
-    CAST(ButtonPress AS float) as ButtonPress,
-    TOD,
-    EventProcessedUtcTime,
-    PartitionId,
-    EventEnqueuedUtcTime,
-    IoTHub
-INTO
-    [YourOutputAlias]
-FROM
-    [YourInputAlias]
-```
-  
-3. Replace `[YourInputAlias]` with the input alias of the job.
-
-4. Replace `[YourOutputAlias]` with the output alias of the job.
-![image](https://user-images.githubusercontent.com/53897474/158877055-ef16eddf-be7f-4f98-b33a-e9147db0d9ac.png)
-
-### Run the Stream Analytics job
-
-1. In the Stream Analytics job, select **Overview**, then select **Start > Now > Start**. 
-2. Once the job successfully starts, the job status changes from Stopped to Running.
-![image](https://user-images.githubusercontent.com/53897474/158877111-13679f4e-dcfd-4b47-95d8-881ff0527b09.png)
-
-3. Start your sensor board and let it run until data payloads have been sent. You can keep track of this using the **Monitoring Payloads sent to Azure** section of this walkthrough. 
-4. Navigating back to the **Query** section of the Stream Analytics Job, you will be able to see the incoming payloads being received. 
-![image](https://user-images.githubusercontent.com/53897474/158877161-71d2e3b2-3c1e-46eb-9122-d0e87678cd36.png)
-
-### Create a Power BI report
-
-A Power BI report displays data from your dataset in a layout that you can design and configure yourself. We will be using the Power BI report to create a dashboard to display the sensor data.
-
-1. Sign in to your Power BI account and select Power BI service from the top menu.
-2. Select the workspace you used from the side menu, **My Workspace**.
-4. Under the **All** tab, you should see the dataset that you specified when you created the output for the Stream Analytics job.
-5. Hover over the dataset you created, select More options menu (the three dots to the right of the dataset name), and then select **Create report**.
-![image](https://user-images.githubusercontent.com/53897474/158877208-0b146853-4a77-4c75-a023-02207ff16d5c.png)
-
-### Configure a Power BI report to visualize the data
-
-1. Select charts, tables and maps from the **Visualizations** menu to design your dashboard.
-![image](https://user-images.githubusercontent.com/53897474/158877256-101ead23-694a-4bc7-ae30-c4c57e9d7ff2.png)
-
-2. As an example, the configuration for the Line Chart Visualization is as follows:
-* drag **Temperature** into the **Values** section, and **EventEnqueuedUtcTime** into the **Axis** section.
-![image](https://user-images.githubusercontent.com/53897474/158877287-70cbca69-710f-44b6-b58d-22452e11f07d.png)
-
-### Share the report
-
-1. Select **Save** to save the report. When prompted, enter a name for your report. When prompted for a sensitivity label, you can select **Public** and then select **Save**.
-![image](https://user-images.githubusercontent.com/53897474/158877321-81287cd1-5d5d-40b9-ad97-b4413e901bff.png)
-
-2. Still on the report pane, select File > Embed report > Website or portal.
-![image](https://user-images.githubusercontent.com/53897474/158877347-64dad571-a426-473c-9943-910b8c83ae5d.png)
-
-* NOTE: If you get a notification to contact your administrator to enable embed code creation, you may need to contact them. Embed code creation must be enabled before you can complete this step.
-
-3. You're provided the report link that you can share with anyone for report access and a code snippet that you can use to integrate the report into a blog or website. Copy the link in the Secure embed code window and then close the window.
-![image](https://user-images.githubusercontent.com/53897474/158877389-de607315-3bf2-4fc4-a52e-e565c06cf0b9.png)
-
-4. Open a web browser and paste the link into the address bar.
-![image](https://user-images.githubusercontent.com/53897474/158877428-24f29f1a-97a6-4b87-918a-994cb999b173.png)
-
-### Done
-
-Your dashboard is now displaying sensor data from your Azure IoT Hub. In this tutorial, you have completed the following:
-* Created a consumer group in your Azure IoT hub.
-* Created and configured an Azure Stream Analytics job to read temperature telemetry from your consumer group and sent it to Power BI.
-* Configured a report for the data in Power BI and shared it to the web.
-
-## Credits:
+# Credits:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://github.com/garettB/TELUS_IoT_Getting_Started)
 * Microsoft Azure's tutorial: [Visualize real-time sensor data from Azure IoT Hub using Power BI](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
 * Dinusha Kumarasiri's tutorial: [End to end IoT Solution with Azure IoT Hub, Event Grid and Logic Apps](https://youtu.be/Wb_QT0qHGOo)
