@@ -1,9 +1,9 @@
 # Telus IoT Starter Kit Walkthrough: Part 1
 
 This 3-part tutorial will help get you started with the TELUS LTE-M IoT Starter Kit:
-* **Part 1** will give you some background on the kit and walk you through the process of getting the kit configured to send data to your own Microsoft Azure instance.
-* **Part 2** will walk you through using the IoT data in a logic app with the Copernicus open access hub API. 
-* **Part 3** will walk you through displaying the IoT data in a Power BI dashboard.
+* **[Part 1](https://github.com/briantan050/Telus-IoT-Starter-Kit-Walkthrough-Part-1/)** will give you some background on the kit and walk you through the process of getting the kit configured to send data to your own Microsoft Azure instance.
+* **[Part 2](https://github.com/briantan050/Telus-IoT-Starter-Kit-Walkthrough-Part-2/)** will walk you through using the IoT data in a logic app with the Copernicus open access hub API. 
+* **[Part 3](https://github.com/briantan050/Telus-IoT-Starter-Kit-Walkthrough-Part-3/)** will walk you through displaying the IoT data in a Power BI dashboard.
 
 ### IoT to Cloud
 Internet of things devices provide low-cost solutions for remote data collection. The Telus IoT Starter Kit provides hardware for remote data collection for use with a cellular IoT SIM card. This tutorial will walk you through the setup and configuration of the kit so that you can start collecting IoT data and send it to the cloud for further action. 
@@ -291,8 +291,8 @@ Your board is now sending sensor data to Azure IoT Hub on a regular basis. In th
 
 ## Next steps
 Now that you are receiving sensor data in the Azure IoT Hub, the next step is to do something with it! Choose what to do next:
-* **Part 2** will connect the sensor data to an Azure Logic App, enabling you to perform specific actions with it. In this tutorial, we connect it with the Copernicus open data hub API to use the sensor's latitude and longitude to select a map and retrieve its URL for the user to download.
-* **Part 3** will send the sensor data from the IoT Hub to Power BI through a Stream Analytics job, enabling you to display your data on a dashboard that updates automatically.
+* **[Part 2](https://github.com/briantan050/Telus-IoT-Starter-Kit-Walkthrough-Part-2/)** will walk you through using the IoT data in a logic app with the Copernicus open access hub API. 
+* **[Part 3](https://github.com/briantan050/Telus-IoT-Starter-Kit-Walkthrough-Part-3/)** will walk you through displaying the IoT data in a Power BI dashboard.
 
 ## Credits:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://github.com/garettB/TELUS_IoT_Getting_Started)
