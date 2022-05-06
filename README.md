@@ -140,7 +140,7 @@ https://powerbi.microsoft.com/en-ca/
 ### Creating Your IoT Hub
 Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard. This will be our central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and act on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured, and visibility to that data is also protected. 
 
-* Click on **Create a resource**
+* Select **Create a resource**
 ![alt text](images/iot_hub_create.png)
 
 * Give your IoT a unique name
