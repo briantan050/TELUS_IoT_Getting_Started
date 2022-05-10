@@ -222,7 +222,7 @@ The following steps will get your client compiled and loaded to your board:
 * `mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
 * or `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json` (windows)
 * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
-8. If all goes well, you will see the mbed compiler start creating your new bin file.  When it is complete, the file can be found here, relative to the `azure-iot-mbed-client` directory you should still be in: `BUILD\NUCLEO_L496ZG\GCC_ARM-TOOLCHAIN_DEBUG`
+8. If all goes well, you will see the mbed compiler start creating your new bin file. If you are still inside the `azure-iot-mbed-client` directory, you will find it in: `BUILD \ NUCLEO_L496ZG \ GCC_ARM-TOOLCHAIN_DEBUG`
 9. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
 
 Once your board reboots it will immediately attempt to connect to the network, read sensor data and send that data to your IoT Hub.
