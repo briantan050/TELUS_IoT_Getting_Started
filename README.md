@@ -39,20 +39,18 @@ It includes all the features you need to develop a connected product based on an
 # Configuring Your IoT Hardware
 The BG96 and X-NUCLEO-IKS01A2 are already connected to each other in the box.  Ensure that the switch is in the SIM position. Some important parts of the board are below:
 
-Ensure the SIM switch is in the `SIM` position, and the SIM is inserted with the notch close to the switch.
+Ensure the SIM switch is in the **SIM** position, and the SIM is inserted with the notch close to the switch.  
+<img src="https://user-images.githubusercontent.com/53897474/168671879-1e4d7eb8-8f80-4d02-9791-4314fc62da51.png" width="300">  
 
-![alt text](images/sim_details.png)
-*[Image used from element14 Blog](https://www.element14.com/community/groups/mbed/blog/2018/09/21/implementing-an-azure-iot-client-using-the-mbed-os-part-2)*
+___
 
-Also, please ensure that the Rx/Tx slide switches are set as shown (maroon switches away from the BG96 chip:
+Also, please ensure that the Rx/Tx slide switches are set as shown (maroon switches away from the BG96 chip):  
+<img src="https://user-images.githubusercontent.com/53897474/168672127-2a921c5e-cd0a-40ed-a34d-b1445792d279.png" width="300">  
 
-![alt text](images/board_switches.png)
-*[Image used from element14 Blog](https://www.element14.com/community/groups/mbed/blog/2018/09/21/implementing-an-azure-iot-client-using-the-mbed-os-part-2)*
+___
 
-Connect the BG96 with sensor module to the L496 MCU so it looks like below:
-
-![alt text](images/iot_board.png)
-*[Image used from element14 Blog](https://www.element14.com/community/groups/mbed/blog/2018/09/21/implementing-an-azure-iot-client-using-the-mbed-os-part-2)*
+Connect the BG96 with sensor module to the L496 MCU so it looks like below:  
+<img src="https://user-images.githubusercontent.com/53897474/168678468-f63466d4-60fd-4245-af9b-745655cd5964.png" width="400">  
 
 Now your hardware is ready to be connected and programmed.
 
@@ -69,52 +67,66 @@ There are several tools we’ll need to use throughout this tutorial, so let’s
 #### Windows
 Windows users will need to add **Python 2.7.13** and **Python 3.10.2** to their user or systems PATH environment variables before proceeding:
 
-1. Right click on **My Computer** or **This PC** and select **Properties**.
-![image](https://user-images.githubusercontent.com/53897474/158488241-2ec16e0a-3eab-411c-ac95-1413398c7962.png)
+1. Right click on **My Computer** or **This PC** and select **Properties**.  
+<img src="https://user-images.githubusercontent.com/53897474/168672802-1972ff98-b4ff-4200-ac1b-c3b6e29099c9.png" width="600"> 
 
-2. Select **Advanced system settings**.
-![image](https://user-images.githubusercontent.com/53897474/158488261-8f7026ee-c8cc-4efe-b19b-28e709a23d75.png)
+___
 
-3. In the **Advanced** tab, select **Environment Variables...**.
-![image](https://user-images.githubusercontent.com/53897474/158872785-fe5a5685-6b8b-4c28-8083-25f375733a62.png)
+2. Select **Advanced system settings**.  
+<img src="https://user-images.githubusercontent.com/53897474/168673396-ce336a8b-cc34-4677-8fea-d04b3ae0550a.png" width="600"> 
 
-4. In the **System variables** section, double click on **Path** to edit path variables.
-![image](https://user-images.githubusercontent.com/53897474/158488306-a20e1dc9-7df6-4bcd-b819-fcc68db5b7bf.png)
+___
 
-5. Add Python 2.7.13 and Python 3.10.2 as a new PATH environment variable. Click **Browse...** and navigate to the folder it was installed.
-![image](https://user-images.githubusercontent.com/53897474/158488342-6d4fd7ae-4fab-4f93-ba68-e67c45ce03e9.png)
+3. In the **Advanced** tab, select **Environment Variables...**.  
+<img src="https://user-images.githubusercontent.com/53897474/168673577-8bf73537-8ed2-4634-805c-7c1bc9d2870f.png" width="400">
+
+___
+
+4. In the **System variables** section, double click on **Path** to edit path variables.  
+<img src="https://user-images.githubusercontent.com/53897474/168673279-ff81a5ac-5b5c-4675-9e19-5de9986953c7.png" width="400"> 
+
+___
+
+5. Add **Python 2.7.13** and **Python 3.10.2** as a new PATH environment variable. Click **Browse...** and navigate to the folder it was installed.  
+<img src="https://user-images.githubusercontent.com/53897474/168673846-089e1206-71f2-4be4-8b37-a6b53c2a17d2.png" width="400"> 
+
+___
 
 6. Select **OK**, **OK**, and **OK** to confirm and close all windows. Python 2.7.13 and Python 3.10.2 are now added into your systems PATH environment variables.
 
 ### Install PIP, the Python Package Installer
 PIP is a command-line tool that installs Python packages, it is the standard for installing requirements for Python projects and we will need to use it to gather dependencies before we can compile the MBED-OS.
 
-1. Open the command prompt. In Windows, this is done by searching **CMD**
-![image](https://user-images.githubusercontent.com/53897474/158488410-f50ece73-6799-4606-aed7-914f68e35293.png)
+1. Open the command prompt. In Windows, this is done by searching **CMD**  
+<img src="https://user-images.githubusercontent.com/53897474/168674040-b6434abf-250d-4f6c-b246-ca2db0bbab82.png" width="600"> 
 
-2. From the command line, run the following command to retrieve the PIP install script:
-* `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`
-![image](https://user-images.githubusercontent.com/53897474/158873925-e0366a3d-f06e-4260-bfbb-de5605223ece.png)
+___
 
-3. Run the following command to retrieve and install PIP:
-* `python get-pip.py`
-* or `py -3 get-pip.py` (windows)
+2. From the command line, run the following command to retrieve the **PIP install script**:  
+   * `curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py`  
+<img src="https://user-images.githubusercontent.com/53897474/168674271-b8f63487-0cb5-4711-873f-a4f6a78974f6.png" width="600"> 
+
+___
+
+3. Run the following command to retrieve and **install PIP**:
+   * `python get-pip.py`
+   * or `py -3 get-pip.py` (windows)
 4. Verify PIP is installed correctly and ensure your Python `setuptools` package is up-to-date by running the following command:
-* `python -m pip install --upgrade setuptools`
-* or `py -2 -m pip install --upgrade setuptools` (windows)
-* If you encounter errors with the above command, try appending `--user` and re-run
-* NOTE: Do not update your Python to the latest version from the command line, as this could lead to compatibility problems with this walkthrough. 
+   * `python -m pip install --upgrade setuptools`
+   * or `py -2 -m pip install --upgrade setuptools` (windows)
+   * If you encounter errors with the above command, try appending `--user` and re-run
+   * NOTE: Do not update your Python to the latest version from the command line, as this could lead to compatibility problems with this walkthrough. 
 
 That's all for PIP for now, we'll reference it again a bit later.
 
 ### MBED Command Line (mbed-cli)
-The mbed-cli is hosted on github and built in Python, so we can download it using `git` and compile using `Python`, now that we have made sure both are installed on our computer.
+The **mbed-cli** is hosted on github and built in Python, so we can download it using `git` and compile using `Python`, now that we have made sure both are installed on our computer.
 
 From the command-line:
 1. `git clone https://github.com/ARMmbed/mbed-cli.git`
 2. `cd mbed-cli`
 3. `python setup.py install`
-* or `py -2 -m setup.py install` (windows)
+   * or `py -2 -m setup.py install` (windows)
 
 Now you should be able to run the `mbed` command from your command-line, you may need to relaunch your terminal for it to work. 
 
@@ -123,7 +135,7 @@ Avnet has created a client for the TELUS IoT starter kit that, with a couple of 
 
 Get the client downloaded by running the following from the command-line, this will create a folder with loads of files, so be sure to run the command in a folder that works for you:
 1. `mbed import https://github.com/Avnet/azure-iot-mbed-client`
-* or `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client` (windows)
+   * or `py -2 -m mbed import https://github.com/Avnet/azure-iot-mbed-client` (windows)
 
 The import will take a while, and we can’t do too much more with the client until we get Azure up and running, so let’s jump over to Azure to get things rolling on that side.
 
@@ -134,57 +146,61 @@ We will be using Microsoft Azure to link the IoT device to the cloud. Azure is a
 If you don’t already have an Azure account you can sign up for a free trial which comes bundled with $250 of free credits to use for 1 month:
 https://azure.microsoft.com/en-ca/
 
-Also, if you intend to complete Part 2, make sure to check that you can create a Power BI account with the same email:
+Also, if you intend to complete [Part 3](https://github.com/briantan050/Telus-IoT-Starter-Kit-Walkthrough-Part-3/), make sure to check that you can create a Power BI account with the same email:
 https://powerbi.microsoft.com/en-ca/
 
 ### Creating Your IoT Hub
-Once you have your account created you can proceed to create a new IoT Hub from your Azure dashboard. This will be our central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and act on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured, and visibility to that data is also protected. 
+Once you have your account created you can proceed to create a new **IoT Hub** from your Azure dashboard. This will be the central location for all our IoT devices to connect and send whatever data we have configured them to relay, and gives us a single point to read and act on that data. Azure has security built-in, all communications between our IoT devices to Azure will be secured, and visibility to that data is also protected. 
 
-* Select **Create a resource**
-![alt text](images/iot_hub_create.png)
+1. Select **Create a resource**  
+<img src="https://user-images.githubusercontent.com/53897474/168678929-f8aefdb4-62bd-4aa8-954e-2d8c2343ee15.png" width="950"> 
 
-* Give your IoT a unique name
-* Place it in the Canada East region and make sure your Subscription is set to **Free Trial**. 
-* Your new IoT Hub should look similar to this:
-![alt text](images/iot_hub_config.png)
+___
 
-* Proceed to **Review and Create** then create your instance. This may take a couple of minutes.
+2. Give your IoT a unique name
+3. Select your region and make sure your Subscription is set to **Free Trial**. 
+4. Your new IoT Hub should look similar to this:  
+<img src="https://user-images.githubusercontent.com/53897474/168679004-71be708e-021a-41e1-9ddd-f04e0f06e222.png" width="750"> 
+
+___
+
+5. Proceed to **Review and Create** then create your instance. This may take a couple of minutes.
 
 Now our IoT Hub is created! As a next step, we are going to retrieve keys that we can use to securely transport and monitor the data being sent between our IoT devices and our newly created Azure IoT Hub.
 
-* Open your newly created IoT Hub instance, then select **Shared Access Policies** from the left-hand pane which will bring up a list of pre-created policies
-* Select the one labeled **iothubowner**. 
-* A new right-hand pane will appear with a list of **Shared access keys**. 
-* Copy the one labeled **Connection string - primary key** and store it someplace safe for later.
-![alt text](images/iot_hub_connection_string.png)
+6. Open your newly created IoT Hub instance, then select **Shared Access Policies** from the left-hand pane which will bring up a list of pre-created policies
+7. Select the one labeled **iothubowner**. 
+8. A new right-hand pane will appear with a list of **Shared access keys**. 
+9. Copy the one labeled **Connection string - primary key** and store it someplace safe for later.
+<img src="https://user-images.githubusercontent.com/53897474/168679763-00855a20-6ac7-4f73-a968-e16a5d91f32e.png" width="950"> 
 
 The primary key we just copied can be used from the Azure command-line to monitor all traffic being sent from our IoT devices to the Hub. We will come back to the key once we have the IoT device configured, for now there’s nothing being sent to the Hub, so monitoring would be a bit boring…
 
 ### Create Your IoT Device
 The next step is to create an IoT Device instance within your IoT Hub, this will be mapped directly to the physical IoT Device you are using. 
-* Open your IoT Hub
-* From the left-pane, select **IoT Devices**
-* Then click the **Add** button to create your new device.
-![alt text](images/iot_hub_new_device.png)
+1. Open your **IoT Hub**
+2. From the left-pane, select **IoT Devices**
+3. Then click the **Add** button to create your new device.
+<img src="https://user-images.githubusercontent.com/53897474/168679171-cdabd9cc-b437-4ea7-9c97-b089cd14b7f7.png" width="400"> 
 
-* Give your new device a name that is relevant to your project, this will be how you will identify the source of the data sent to your Hub. 
-* Leave the other settings as-is (“Symmetric Keys” selected and “Auto-generate keys” checked). 
-* Click **Save**.
-
-* Now that your IoT device is created, click it to bring up its “Device Details” screen. 
-* From this screen copy the **Connection String - primary key** and store it with the primary key you copied earlier from the IoT Hub creation step.
-![alt text](images/iot_device_connection_string.png)
+4. Give your new device a name that is relevant to your project, this will be how you will identify the source of the data sent to your Hub. 
+5. Leave the other settings as-is (“Symmetric Keys” selected and “Auto-generate keys” checked). 
+6. Click **Save**.
+7. Now that your IoT device is created, click it to bring up its **Device Details** screen. 
+8. From this screen copy the **Connection String - primary key** and store it with the primary key you copied earlier from the IoT Hub creation step.
+<img src="https://user-images.githubusercontent.com/53897474/168679961-0f41624e-bfe5-4b12-bd18-b8652cacb7e2.png" width="950">  
 
 * This primary key will be loaded to your IoT device to secure the communications channel between it and your IoT Hub.
 * At this point we have everything we need to complete the configuration of your TELUS LTE-M IoT Starter Kit, so we’ll jump back there.
 
 ### Configure Your IoT Device for Azure
-Getting back to the “Download the Avnet Azure IoT Client” step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named “**azure-iot-mbed-client**”, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice (**Notepad** or **Notepad++** work fine too):
+Getting back to the **Download the Avnet Azure IoT Client** step from earlier on in the tutorial, hopefully it has completed importing which should have created a folder for you named **azure-iot-mbed-client**, within this folder there are 3 different files we need to configure. Open the following files in your text editor of choice (**Notepad** or **Notepad++** work fine too):
 1. **AvnetBG96_azure_client.cpp**
 2. **mbed_settings.py**
 * The **azure-iot-mbed-client** folder can be found in the current directory as shown in the command prompt. These folders may be different for you:
-![image](https://user-images.githubusercontent.com/53897474/158874994-e7114935-8dd8-4d97-ae36-31f7efa70de3.png)
-![image](https://user-images.githubusercontent.com/53897474/158875246-14d65349-def8-40a4-bdba-c183e38965ae.png)
+<img src="https://user-images.githubusercontent.com/53897474/168675213-8570d1a3-88f3-48cd-a592-55697be7baa4.png" width="600">  
+<img src="https://user-images.githubusercontent.com/53897474/168675328-1185ae44-d4a1-43b1-9065-b6f628967a12.png" width="600"> 
+
 
 #### AvnetBG96_azure_client.cpp
 This file handles the sensor information gathering from the IoT board sensors, crafting the sensor data into a message payload and communicating that payload to Azure. In this tutorial we’ll leave the file logic pretty much as-is, but if you feel the need to modify the function of the board, I recommend looking back to this file at a later time.
@@ -195,33 +211,34 @@ The only thing we need to configure in this file is **connectionString** (`line 
 2. Set the **deviceId** to the name you used for the IoT device in Azure. 
 * NOTE: The deviceId is actually part of the connection string. 
 * Below is a screenshot of my configured file:
-![image](https://user-images.githubusercontent.com/53897474/158883663-098a1eee-3be2-4c2e-86bd-b7e43fd42084.png)
+<img src="https://user-images.githubusercontent.com/53897474/158883663-098a1eee-3be2-4c2e-86bd-b7e43fd42084.png" width="600"> 
+
 
 #### mbed_settings.py
 In this file we need to update the **GCC_ARM_PATH** value (`line 32`) to the location where you extracted the **GNU ARM Embedded Toolchain**. 
 In my case I changed the line from `/usr/local/gcc-arm-none-eabi-7-2018-q2-update/bin/` to  
 `/C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin/`
 * NOTE: Ensure the location has a `/` at each end.
-![image](https://user-images.githubusercontent.com/53897474/158878203-92c825be-f4f6-4857-aca8-474a84ff598f.png)
+<img src="https://user-images.githubusercontent.com/53897474/158878203-92c825be-f4f6-4857-aca8-474a84ff598f.png" width="600"> 
 
 # Compiling the code
 The following steps will get your client compiled and loaded to your board:
 1. Run the terminal or command-line on your Mac or Windows PC respectively
-2. Change the directory to azure-iot-mbed-client (this is created in the same directory where we ran `mbed import` above) by running the following command:
-* `cd azure-iot-mbed-client`
+2. Change the directory to **azure-iot-mbed-client** (this is created in the same directory where we ran `mbed import` above) by running the following command:
+   * `cd azure-iot-mbed-client`
 3. Install the required Python wheel package by running the command:
-* `python -m pip install wheel`
-* or `py -2 -m pip install wheel` (windows)
+   * `python -m pip install wheel`
+   * or `py -2 -m pip install wheel` (windows)
 4. Install the required Python packages by running the command:
-* `python -m pip install -r mbed-os/requirements.txt`
-* or `py -2 -m pip install -r mbed-os/requirements.txt` (windows)
-* If you encounter errors, try appending `--user` to the abve command and re-run
+   * `python -m pip install -r mbed-os/requirements.txt`
+   * or `py -2 -m pip install -r mbed-os/requirements.txt` (windows)
+   * If you encounter errors, try appending `--user` to the abve command and re-run
 5. Plug a USB cable from the L496 MCU (white board) using the micro-usb cable into your computer
 6. Check to see if there is a USB drive detected called NODE_L496ZG.  This means your board is connected.
 7. Run the command:
-* `mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
-* or `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json` (windows)
-* *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
+   * `mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json`
+   * or `py -2 -m mbed compile -m NUCLEO_L496ZG -t GCC_ARM --profile toolchain_debug.json` (windows)
+   * *You may need to prepend the command with `python -m` on Windows or use `sudo` on Mac*
 8. If all goes well, you will see the mbed compiler start creating your new bin file. If you are still inside the `azure-iot-mbed-client` directory, you will find it in: `BUILD \ NUCLEO_L496ZG \ GCC_ARM-TOOLCHAIN_DEBUG`
 9. Drag the created binary over to the NODE_L496ZG drive, this will load the new client software and reboot your IoT board
 
@@ -253,16 +270,16 @@ With the IoT board connected to your computer, you are able to analyze the board
 Tera Term enables us to monitor messages from the board through the COM port connected to the PC. Follow these steps:
   
 1. Open Tera Term, select **Serial** and **OK** to connect to the board through the COM port.
-![Tera_1](https://user-images.githubusercontent.com/53897474/158283699-37a1a32f-ab6d-4f29-b91c-125c9fb77e83.png)
+<img src="https://user-images.githubusercontent.com/53897474/168676471-1333e1b5-ca79-4534-8cb3-b0e308881e0d.png" width="400"> 
 
 2. In the **Setup** tab, select **Serial port...**
-![Tera_2](https://user-images.githubusercontent.com/53897474/158283783-3852542f-3635-4d28-9033-71d6866454e3.png)
+<img src="https://user-images.githubusercontent.com/53897474/168676875-a44ddaa7-238d-4d5f-8d16-cbc4aa02333f.png" width="400"> 
 
 3. Change the **Speed** setting to **115200** and confirm by selecting **New setting**
-![Tera_3](https://user-images.githubusercontent.com/53897474/158283827-c3dd35cd-0c17-4a84-a543-452b0d3c2e06.png)
+<img src="https://user-images.githubusercontent.com/53897474/168676785-c25961ca-07e8-4ec1-a0fe-a844e7603b31.png" width="400"> 
 
-If you don’t see anything in the terminal after following the above steps, press the black “RESET B2” button on the white board, this will reboot the board and should present you with a screen similar to this one in the terminal:
-![Tera_4](https://user-images.githubusercontent.com/53897474/158283873-b790b8b8-91a5-4ba9-b95a-0b3d63a333a4.png)
+If you don’t see anything in the terminal after following the above steps, press the black **RESET B2** button on the white microcontroller board, this will reboot the board and should present you with a screen similar to this one in the terminal:
+<img src="https://user-images.githubusercontent.com/53897474/168677116-29ac5edb-6417-4294-9a83-f92e139944a4.png" width="400"> 
 
 If it is still having trouble connecting, place your board near a window to get better reception. 
 
@@ -278,8 +295,8 @@ The Azure CLI tool will let us monitor the payloads sent from the board to Azure
 3. Retrieve the “Connection String - primary key” that you copied earlier when you created your IoT Hub, with it, issue the following command in the command-line terminal:
 * `az iot hub monitor-events --login "<your_connection_string"`
 
-If all goes well you will start seeing JSON payloads as they are sent to the server:
-![alt text](images/azure_cli_output.png)
+If all goes well you will start seeing JSON payloads as they are sent to the server:  
+<img src="https://user-images.githubusercontent.com/53897474/168677256-10447b05-ba21-4992-b2c9-03023d0ae12c.png" width="950"> 
 
 ## Done
 Your board is now sending sensor data to Azure IoT Hub on a regular basis. In this tutorial, you have completed the following:
@@ -297,5 +314,6 @@ Now that you are receiving sensor data in the Azure IoT Hub, the next step is to
 ## Credits:
 * GarettB's tutorial: [TELUS IOT Getting Started](https://github.com/garettB/TELUS_IoT_Getting_Started)
 * Microsoft Azure's tutorial: [Visualize real-time sensor data from Azure IoT Hub using Power BI](https://docs.microsoft.com/en-us/azure/iot-hub/iot-hub-live-data-visualization-in-power-bi)
+* Microsoft Azure's tutorial: [Quickstart: Create a function in Azure with Python using Visual Studio Code](https://docs.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-python)
 * Dinusha Kumarasiri's tutorial: [End to end IoT Solution with Azure IoT Hub, Event Grid and Logic Apps](https://youtu.be/Wb_QT0qHGOo)
 * Reza Vahidnia and F. John Dian's book: [Cellular Internet of Things for Practitioners](https://pressbooks.bccampus.ca/cellulariot/)
