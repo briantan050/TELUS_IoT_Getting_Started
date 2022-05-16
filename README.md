@@ -39,17 +39,17 @@ It includes all the features you need to develop a connected product based on an
 # Configuring Your IoT Hardware
 The BG96 and X-NUCLEO-IKS01A2 are already connected to each other in the box.  Ensure that the switch is in the SIM position. Some important parts of the board are below:
 
-Ensure the SIM switch is in the **SIM** position, and the SIM is inserted with the notch close to the switch.  
+1. Ensure the SIM switch is in the **SIM** position, and the SIM is inserted with the notch close to the switch.  
 <img src="https://user-images.githubusercontent.com/53897474/168671879-1e4d7eb8-8f80-4d02-9791-4314fc62da51.png" width="300">  
 
 ___
 
-Also, please ensure that the Rx/Tx slide switches are set as shown (maroon switches away from the BG96 chip):  
+2. Also, please ensure that the Rx/Tx slide switches are set as shown (maroon switches away from the BG96 chip):  
 <img src="https://user-images.githubusercontent.com/53897474/168672127-2a921c5e-cd0a-40ed-a34d-b1445792d279.png" width="300">  
 
 ___
 
-Connect the BG96 with sensor module to the L496 MCU so it looks like below:  
+3. Connect the BG96 with sensor module to the L496 MCU so it looks like below:  
 <img src="https://user-images.githubusercontent.com/53897474/168678468-f63466d4-60fd-4245-af9b-745655cd5964.png" width="400">  
 
 Now your hardware is ready to be connected and programmed.
@@ -278,7 +278,7 @@ Tera Term enables us to monitor messages from the board through the COM port con
 3. Change the **Speed** setting to **115200** and confirm by selecting **New setting**
 <img src="https://user-images.githubusercontent.com/53897474/168676785-c25961ca-07e8-4ec1-a0fe-a844e7603b31.png" width="400"> 
 
-If you don’t see anything in the terminal after following the above steps, press the black **RESET B2** button on the white microcontroller board, this will reboot the board and should present you with a screen similar to this one in the terminal:
+If you don’t see anything in the terminal after following the above steps, press the black **RESET B2** button on the white microcontroller board, this will reboot the board and should present you with a screen similar to this one in the terminal:  
 <img src="https://user-images.githubusercontent.com/53897474/168677116-29ac5edb-6417-4294-9a83-f92e139944a4.png" width="400"> 
 
 If it is still having trouble connecting, place your board near a window to get better reception. 
