@@ -18,7 +18,6 @@ The list of steps is as follows:
 1. [Telus IOT Starter Kit](https://www.avnet.com/shop/us/products/avnet-engineering-services/aes-bg96-iot-sk2-g-3074457345636408150?INTCMP=tbs_low-power-wide-area_button_buy-your-kit)
 2. [Microsoft Azure Account](https://azure.microsoft.com/en-ca/)
 3. Basic knowledge of Command-Line Interface is an asset
-4. Basic knowledge of SQL is an asset
 
 **IMPORTANT NOTE**: If you intend to complete **Part 3** of the walkthrough, it is imperative that you use the same email for both the Microsoft Power BI Account and the Microsoft Azure account for this project. Linking the data from the Azure IoT Hub to the Power BI dashboard will only work if the same email is used for both accounts. Please test to make sure that you are able to make both accounts with the same email before starting. Register with [this link](https://powerbi.microsoft.com/en-ca/) (may require a work-email to register). 
 
